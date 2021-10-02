@@ -24,6 +24,8 @@ import {createKbdPlugin} from "@udecode/plate-kbd";
 import {createLinkPlugin} from "@udecode/plate-link";
 import {createHighlightPlugin} from "@udecode/plate-highlight";
 import {createImagePlugin} from "@udecode/plate-image";
+import {createListPlugin} from "@udecode/plate-list";
+import {createFontBackgroundColorPlugin, createFontColorPlugin, createFontSizePlugin} from "@udecode/plate-font";
 
 export const pluginsBasic = [
     // editor
@@ -42,14 +44,18 @@ export const pluginsBasic = [
     createUnderlinePlugin(),      // underline mark
     createStrikethroughPlugin(),  // strikethrough mark
     createCodePlugin(),           // code mark
+    createFontColorPlugin(),
+    createFontBackgroundColorPlugin(),
+    createFontSizePlugin(),
 
-    // toolbar
+    // Other blocks
     createAlignPlugin(),
     createTablePlugin(),
     createLinkPlugin(),
     createKbdPlugin(),
     createHighlightPlugin(),
     createImagePlugin(),
+    createListPlugin(),
 ];
 
 // Quick helper to create a block element with (marked) text
