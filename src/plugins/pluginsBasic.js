@@ -27,6 +27,7 @@ import {createImagePlugin} from "@udecode/plate-image";
 import {createListPlugin} from "@udecode/plate-list";
 import {createFontBackgroundColorPlugin, createFontColorPlugin, createFontSizePlugin} from "@udecode/plate-font";
 import {createFieldPlugin} from "./field/createFieldPlugin";
+import {emptyFieldTemplate} from "./field/getEmptyFieldNode";
 
 export const pluginsBasic = [
     // editor
@@ -88,10 +89,7 @@ export const createElement = (
 export const initialValueBasicElements = [
     {
         type: FIELD,
-        children: [
-            {text: "Field"}
-        ],
-        fieldName: "python_style_field_name"
+        ...emptyFieldTemplate
     },
     createElement('🧱 Elements', {type: ELEMENT_H1}),
     createElement('🔥 Basic Elements', {type: ELEMENT_H2}),

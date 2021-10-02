@@ -5,7 +5,7 @@ import {
 import { FIELD } from './defaults';
 
 export const createFieldPlugin = () => ({
-    // deserialize: getEditableVoidDeserialize(),
+    // deserialize: getFieldDeserialize(),
     renderElement: getRenderElement(FIELD),
     voidTypes: getPlatePluginTypes(FIELD),
 });
