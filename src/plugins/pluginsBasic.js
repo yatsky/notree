@@ -17,7 +17,7 @@ import {
     createItalicPlugin, createStrikethroughPlugin, createSubscriptPlugin, createSuperscriptPlugin,
     createUnderlinePlugin, MARK_BOLD, MARK_CODE, MARK_ITALIC, MARK_STRIKETHROUGH, MARK_UNDERLINE
 } from "@udecode/plate-basic-marks";
-import {EDITABLE_VOID} from "./field/defaults";
+import {FIELD} from "./field/defaults";
 import {createAlignPlugin} from "@udecode/plate-alignment";
 import {createTablePlugin} from "@udecode/plate-table";
 import {createKbdPlugin} from "@udecode/plate-kbd";
@@ -26,7 +26,7 @@ import {createHighlightPlugin} from "@udecode/plate-highlight";
 import {createImagePlugin} from "@udecode/plate-image";
 import {createListPlugin} from "@udecode/plate-list";
 import {createFontBackgroundColorPlugin, createFontColorPlugin, createFontSizePlugin} from "@udecode/plate-font";
-import {createEditableVoidPlugin} from "./field/createFieldPlugin";
+import {createFieldPlugin} from "./field/createFieldPlugin";
 
 export const pluginsBasic = [
     // editor
@@ -61,7 +61,7 @@ export const pluginsBasic = [
     createListPlugin(),
 
     // Field
-    createEditableVoidPlugin(),
+    createFieldPlugin(),
 ];
 
 // Quick helper to create a block element with (marked) text
@@ -85,7 +85,7 @@ export const createElement = (
 };
 
 export const initialValueBasicElements = [
-    // createElement('Editable Void', {type: EDITABLE_VOID}),
+    // createElement('Editable Void', {type: FIELD}),
     createElement('🧱 Elements', {type: ELEMENT_H1}),
     createElement('🔥 Basic Elements', {type: ELEMENT_H2}),
     createElement('These are the most common elements, known as blocks:'),

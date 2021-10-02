@@ -31,7 +31,7 @@ const plugins = [
 
 const components = createPlateComponents();
 
-export const EditableVoidElement = ({
+export const Field = ({
                                         attributes,
                                         children,
                                     }) => {
@@ -75,6 +75,7 @@ export const EditableVoidElement = ({
                         options={options}
                         editableProps={editableProps}
                         initialValue={initialValueVoids}
+                        enabled={true}
                     />
                 </div>
             </div>

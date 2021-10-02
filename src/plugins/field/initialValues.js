@@ -1,5 +1,5 @@
 import {ELEMENT_PARAGRAPH} from "@udecode/plate-paragraph";
-import {EDITABLE_VOID} from "./defaults";
+import {FIELD} from "./defaults";
 
 export const initialValueVoids = [
     {
@@ -12,7 +12,7 @@ export const initialValueVoids = [
         ],
     },
     {
-        type: EDITABLE_VOID,
+        type: FIELD,
         children: [{ text: '' }],
     },
     {

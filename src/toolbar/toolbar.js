@@ -24,7 +24,7 @@ import {
 } from "./config";
 import {MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import {Image, Link} from "@styled-icons/boxicons-regular";
-import {EDITABLE_VOID} from "../plugins/field/defaults";
+import {FIELD} from "../plugins/field/defaults";
 
 export const HeadingToolbarMarks = () => {
     const editor = useStoreEditorRef(useEventEditorId('focus'));
@@ -48,7 +48,7 @@ export const HeadingToolbarMarks = () => {
             <ToolbarLink icon={<Link />} />
             <ToolbarImage icon={<Image />} />
             <ToolbarButtonsTable />
-            <ToolbarElement type={getPlatePluginType(editor, EDITABLE_VOID)}
+            <ToolbarElement type={getPlatePluginType(editor, FIELD)}
                             icon="N"
                             />
         </HeadingToolbar>

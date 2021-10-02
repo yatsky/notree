@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {createPlateComponents, createPlateOptions, Plate} from '@udecode/plate';
 import {pluginsBasic, initialValueBasicElements} from './plugins/pluginsBasic'
-import {EDITABLE_VOID} from "./plugins/field/defaults";
-import {EditableVoidElement} from "./plugins/field/field";
-import {createEditableVoidPlugin} from "./plugins/field/createFieldPlugin";
+import {FIELD} from "./plugins/field/defaults";
+import {Field} from "./plugins/field/field";
+import {createFieldPlugin} from "./plugins/field/createFieldPlugin";
 import {BallonToolbarMarks, HeadingToolbarMarks} from "./toolbar/toolbar";
 import {MARK_BG_COLOR, MARK_COLOR, MARK_FONT_SIZE} from "@udecode/plate-font";
 import {StyledLeaf, withStyledProps} from "@udecode/plate-styled-components";
@@ -13,7 +13,7 @@ const options = createPlateOptions();
 
 const components = {
     ...baseComponents,
-    [EDITABLE_VOID]: EditableVoidElement,
+    [FIELD]: Field,
     [MARK_COLOR]: withStyledProps(StyledLeaf, {
         leafProps: {
             [MARK_COLOR]: ['color'],
@@ -34,7 +34,7 @@ const components = {
 
 const plugins = [
     ...pluginsBasic,
-    createEditableVoidPlugin(),
+    createFieldPlugin(),
 ]
 
 function App() {
@@ -59,6 +59,7 @@ function App() {
                    components={components}
                    options={options}
                    onChange={(newV) => onChange(newV)}>
+            {debugVal}
         </Plate>
         </>
     );

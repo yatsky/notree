@@ -2,9 +2,10 @@ import {
     getPlatePluginTypes,
     getRenderElement,
 } from '@udecode/plate';
-import { EDITABLE_VOID } from './defaults';
+import { FIELD } from './defaults';
 
-export const createEditableVoidPlugin = () => ({
-    renderElement: getRenderElement(EDITABLE_VOID),
-    voidTypes: getPlatePluginTypes(EDITABLE_VOID),
+export const createFieldPlugin = () => ({
+    // deserialize: getEditableVoidDeserialize(),
+    renderElement: getRenderElement(FIELD),
+    voidTypes: getPlatePluginTypes(FIELD),
 });

@@ -1,1 +1,1 @@
-export const EDITABLE_VOID = 'editable-void';
+export const FIELD = 'editable-void';
