@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 
 export const FieldElement = ({
-                          attributes,
-                          children,
-                      }) => {
-    const [inputValue, setInputValue] = useState('');
+                                 attributes,
+                                 children,
+                                 // https://docs.slatejs.org/concepts/09-rendering
+                                 element
+                             }) => {
 
     return (
         // Need contentEditable=false or Firefox has issues with certain input types.
@@ -14,9 +15,8 @@ export const FieldElement = ({
                 <input
                     style={{margin: '8px 0'}}
                     type="text"
-                    value={inputValue}
+                    value={element.fieldName}
                     onChange={(e) => {
-                        setInputValue(e.target.value);
                     }}
                 />
                 <h4>Left or right handed:</h4>

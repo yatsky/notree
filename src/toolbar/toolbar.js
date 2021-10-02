@@ -25,6 +25,7 @@ import {
 import {MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import {Image, Link} from "@styled-icons/boxicons-regular";
 import {FIELD} from "../plugins/field/defaults";
+import {insertField} from "../plugins/field/insertField";
 
 export const HeadingToolbarMarks = () => {
     const editor = useStoreEditorRef(useEventEditorId('focus'));
@@ -48,7 +49,8 @@ export const HeadingToolbarMarks = () => {
             <ToolbarLink icon={<Link />} />
             <ToolbarImage icon={<Image />} />
             <ToolbarButtonsTable />
-            <ToolbarElement type={getPlatePluginType(editor, FIELD)}
+            {/*use this to INSERT a field*/}
+            <ToolbarTable transform={insertField}
                             icon="N"
                             />
         </HeadingToolbar>

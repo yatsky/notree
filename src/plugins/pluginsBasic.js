@@ -84,8 +84,15 @@ export const createElement = (
     };
 };
 
+
 export const initialValueBasicElements = [
-    createElement('Editable Void', {type: FIELD}),
+    {
+        type: FIELD,
+        children: [
+            {text: "Field"}
+        ],
+        fieldName: "python_style_field_name"
+    },
     createElement('🧱 Elements', {type: ELEMENT_H1}),
     createElement('🔥 Basic Elements', {type: ELEMENT_H2}),
     createElement('These are the most common elements, known as blocks:'),
