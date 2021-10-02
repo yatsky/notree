@@ -1,4 +1,4 @@
-import {BalloonToolbar, HeadingToolbar} from "@udecode/plate-toolbar";
+import {BalloonToolbar, HeadingToolbar, ToolbarButton} from "@udecode/plate-toolbar";
 import {
     ToolbarCodeBlock,
     ToolbarColorPicker,
@@ -24,8 +24,10 @@ import {
 } from "./config";
 import {MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import {Image, Link} from "@styled-icons/boxicons-regular";
+import {EDITABLE_VOID} from "../plugins/field/defaults";
 
 export const HeadingToolbarMarks = () => {
+    const editor = useStoreEditorRef(useEventEditorId('focus'));
     return (
         <HeadingToolbar>
             <ToolbarButtonsBasicElements />
@@ -46,6 +48,9 @@ export const HeadingToolbarMarks = () => {
             <ToolbarLink icon={<Link />} />
             <ToolbarImage icon={<Image />} />
             <ToolbarButtonsTable />
+            <ToolbarElement type={getPlatePluginType(editor, EDITABLE_VOID)}
+                            icon="N"
+                            />
         </HeadingToolbar>
     )
 }

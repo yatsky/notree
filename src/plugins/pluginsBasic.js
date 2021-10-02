@@ -26,6 +26,7 @@ import {createHighlightPlugin} from "@udecode/plate-highlight";
 import {createImagePlugin} from "@udecode/plate-image";
 import {createListPlugin} from "@udecode/plate-list";
 import {createFontBackgroundColorPlugin, createFontColorPlugin, createFontSizePlugin} from "@udecode/plate-font";
+import {createEditableVoidPlugin} from "./field/createFieldPlugin";
 
 export const pluginsBasic = [
     // editor
@@ -58,6 +59,9 @@ export const pluginsBasic = [
     createHighlightPlugin(),
     createImagePlugin(),
     createListPlugin(),
+
+    // Field
+    createEditableVoidPlugin(),
 ];
 
 // Quick helper to create a block element with (marked) text
