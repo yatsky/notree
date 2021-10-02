@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { useEditorRef } from '@udecode/plate-core';
+import {ReactEditor} from "slate-react";
+import {setNodes} from "@udecode/plate-common";
 
-export const FieldElement = ({
-                                 attributes,
-                                 children,
-                                 // https://docs.slatejs.org/concepts/09-rendering
-                                 element
-                             }) => {
+export const FieldElement = (props) => {
+    // https://docs.slatejs.org/concepts/09-rendering
+    const { attributes, children, element } = props;
+    const editor = useEditorRef();
 
     return (
         // Need contentEditable=false or Firefox has issues with certain input types.
@@ -17,6 +18,12 @@ export const FieldElement = ({
                     type="text"
                     value={element.fieldName}
                     onChange={(e) => {
+                        const path = ReactEditor.findPath(editor, element);
+                        setNodes(
+                            editor,
+                            { fieldName: e.target.value },
+                            {at: path}
+                        )
                     }}
                 />
                 <h4>Left or right handed:</h4>
