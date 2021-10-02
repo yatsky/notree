@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {createPlateComponents, createPlateOptions, Plate} from '@udecode/plate';
+import {pluginsBasic, initialValueBasicElements} from './plugins/pluginsBasic'
+import {EDITABLE_VOID} from "./plugins/field/defaults";
+import {EditableVoidElement} from "./plugins/field/field";
+import {createEditableVoidPlugin} from "./plugins/field/createFieldPlugin";
+import {BallonToolbarMarks, HeadingToolbarMarks} from "./toolbar/toolbar";
+
+const baseComponents = createPlateComponents();
+const options = createPlateOptions();
+
+const components = {
+    ...baseComponents,
+    [EDITABLE_VOID]: EditableVoidElement
+}
+
+const plugins = [
+    ...pluginsBasic,
+    createEditableVoidPlugin(),
+]
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [debugVal, setDebugVal] = useState(null);
+    const onChange = (newV) => {
+        setDebugVal(JSON.stringify(newV))
+    }
+
+    const editableProps = {
+        placeholder: 'Type...,',
+        style: {
+            padding: '15px'
+        }
+    }
+    return (
+        <>
+            <BallonToolbarMarks />
+            <HeadingToolbarMarks />
+        <Plate id="1" editableProps={editableProps}
+                   initialValue={initialValueBasicElements}
+                   plugins={plugins}
+                   components={components}
+                   options={options}
+                   onChange={(newV) => onChange(newV)}>
+        </Plate>
+        </>
+    );
 }
 
 export default App;
