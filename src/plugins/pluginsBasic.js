@@ -60,7 +60,7 @@ export const pluginsBasic = [
     createImagePlugin(),
     createListPlugin(),
 
-    // Field
+    // FieldElement
     createFieldPlugin(),
 ];
 
@@ -85,7 +85,7 @@ export const createElement = (
 };
 
 export const initialValueBasicElements = [
-    // createElement('Editable Void', {type: FIELD}),
+    createElement('Editable Void', {type: FIELD}),
     createElement('🧱 Elements', {type: ELEMENT_H1}),
     createElement('🔥 Basic Elements', {type: ELEMENT_H2}),
     createElement('These are the most common elements, known as blocks:'),
