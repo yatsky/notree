@@ -1,34 +1,24 @@
-import {BalloonToolbar, HeadingToolbar, ToolbarButton} from "@udecode/plate-toolbar";
-import {
-    ToolbarCodeBlock,
-    ToolbarColorPicker,
-    ToolbarElement,
-    ToolbarImage,
-    ToolbarLink,
-    ToolbarList,
-    ToolbarMark,
-    ToolbarSearchHighlight,
-    ToolbarTable,
-} from '@udecode/plate'
+import {BalloonToolbar, HeadingToolbar} from "@udecode/plate-toolbar";
+import {ToolbarColorPicker, ToolbarImage, ToolbarLink, ToolbarMark, ToolbarTable,} from '@udecode/plate'
 import React from "react";
 import {getPlatePluginType, useEventEditorId, useStoreEditorRef} from "@udecode/plate-core";
 import {MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE} from "@udecode/plate-basic-marks";
-import { FormatUnderlined } from '@styled-icons/material/FormatUnderlined';
+import {FormatUnderlined} from '@styled-icons/material/FormatUnderlined';
 import {FontDownload, FormatBold, FormatColorText, FormatItalic} from "@styled-icons/material";
 import {
     ToolbarButtonsAlign,
     ToolbarButtonsBasicElements,
     ToolbarButtonsBasicMarks,
     ToolbarButtonsList,
-    ToolbarButtonsTable, ToolbarHighlight, ToolbarKbd
+    ToolbarButtonsTable,
+    ToolbarHighlight,
+    ToolbarKbd
 } from "./config";
 import {MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import {Image, Link} from "@styled-icons/boxicons-regular";
-import {FIELD} from "../plugins/field/defaults";
 import {insertField} from "../plugins/field/insertField";
 
 export const HeadingToolbarMarks = () => {
-    const editor = useStoreEditorRef(useEventEditorId('focus'));
     return (
         <HeadingToolbar>
             <ToolbarButtonsBasicElements />
