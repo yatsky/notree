@@ -54,7 +54,8 @@ function App() {
     }
     const printHTML = () => console.log(serializeHTMLFromNodes(createEditorPlugins(plugins), {
         plugins: plugins, nodes:
-        editor.children
+        editor.children,
+        preserveClassNames: ["notree-"]
     }))
 
     return (

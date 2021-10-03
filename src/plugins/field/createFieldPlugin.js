@@ -26,7 +26,7 @@ export const createFieldPlugin = (options) => ({
         element: (props) => {
             console.log(props)
             console.log("MODEL: " + props.element.model)
-            return <div {...props.attributes}><p {...props.attributes}>{props.element.fieldName}</p></div>
+            return <div className={"notree-" + props.element.model}>{props.element.fieldName}</div>
         },
     },
     // withOverrides: withInlineVoid(options),
