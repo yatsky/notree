@@ -41,10 +41,7 @@ const plugins = [
 
 function App() {
     const editor = useStoreEditorRef(useEventEditorId('focus'));
-    const [debugVal, setDebugVal] = useState(null);
-    const onChange = (newV) => {
-        setDebugVal(JSON.stringify(newV))
-    }
+    const [htmlVal, setHTMLVal] = useState(null);
 
     const editableProps = {
         placeholder: 'Type...,',
@@ -52,15 +49,15 @@ function App() {
             padding: '15px'
         }
     }
-    const printHTML = () => console.log(serializeHTMLFromNodes(createEditorPlugins(plugins), {
+    const handleHTMLChange = () => setHTMLVal(serializeHTMLFromNodes(createEditorPlugins(plugins), {
         plugins: plugins, nodes:
         editor.children,
-        preserveClassNames: ["notree-"]
+        preserveClassNames: ["slate-", "notree-"]
     }))
 
     return (
         <>
-            <button onClick={printHTML}>Print</button>
+            <button onClick={handleHTMLChange}>Print</button>
             <BallonToolbarMarks/>
             <HeadingToolbarMarks/>
             <Plate id="1" editableProps={editableProps}
@@ -68,8 +65,8 @@ function App() {
                    plugins={plugins}
                    components={components}
                    options={options}
-                   onChange={(newV) => onChange(newV)}>
-                {debugVal}
+            >
+                {htmlVal}
             </Plate>
         </>
     );

@@ -24,8 +24,6 @@ export const createFieldPlugin = (options) => ({
     // serialize needs to be an object, not method
     serialize: {
         element: (props) => {
-            console.log(props)
-            console.log("MODEL: " + props.element.model)
             return <div className={"notree-" + props.element.model}>{props.element.fieldName}</div>
         },
     },
