@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {createHistoryPlugin, createReactPlugin} from "@udecode/plate-core";
 import {createParagraphPlugin, ELEMENT_PARAGRAPH} from "@udecode/plate-paragraph";
 import {createBlockquotePlugin, ELEMENT_BLOCKQUOTE} from "@udecode/plate-block-quote";
@@ -58,7 +59,13 @@ export const pluginsBasic = [
     createLinkPlugin(),
     createKbdPlugin(),
     createHighlightPlugin(),
-    createImagePlugin(),
+    {
+        ...createImagePlugin(),
+        serialize: {
+            element: ({ element }) =>
+                React.createElement('img', { src: element.url }),
+        },
+    },
     createListPlugin(),
 
     // FieldElement
