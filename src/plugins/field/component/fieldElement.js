@@ -9,16 +9,16 @@ export const FieldElement = (props) => {
     const editor = useEditorRef();
     const [fieldHidden,setFieldHidden ] = useState(false)
 
-    const isValidFieldName = (val) => {
+    const isValidName = (val) => {
         return !val.includes(" ");
     }
-    const onFieldNameChange = (e) => {
+    const onNameChange = (e) => {
         let val = e.target.value
-        if (isValidFieldName(val)){
+        if (isValidName(val)){
             const path = ReactEditor.findPath(editor, element);
             setNodes(
                 editor,
-                { fieldName: val },
+                { name: val },
                 {at: path}
             )
         } else {
@@ -36,8 +36,8 @@ export const FieldElement = (props) => {
                 <input
                     style={{margin: '8px 0'}}
                     type="text"
-                    value={element.fieldName}
-                    onChange={onFieldNameChange}
+                    value={element.name}
+                    onChange={onNameChange}
                 />
                 </div>
                 <div>
