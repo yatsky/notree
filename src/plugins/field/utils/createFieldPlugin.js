@@ -3,7 +3,7 @@ import {
     getPlatePluginTypes,
     getRenderElement,
 } from '@udecode/plate';
-import { FIELD } from './defaults';
+import { FIELD } from '../defaults';
 
 export const createFieldPlugin = (options) => ({
     deserialize: () => {

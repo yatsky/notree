@@ -1,6 +1,6 @@
 import { getLeafDeserializer } from '@udecode/plate-common';
 import { getPlatePluginOptions } from '@udecode/plate-core';
-import { FIELD } from './defaults';
+import { FIELD } from '../defaults';
 
 export const getCodeDeserialize = () => (editor) => {
     const options = getPlatePluginOptions(editor, FIELD);

@@ -16,7 +16,7 @@ import {
 } from "./config";
 import {MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import {Image, Link} from "@styled-icons/boxicons-regular";
-import {insertField} from "../plugins/field/insertField";
+import {insertField} from "../plugins/field/utils/insertField";
 
 export const HeadingToolbarMarks = () => {
     return (

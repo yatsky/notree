@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {createEditorPlugins, createPlateComponents, createPlateOptions, Plate} from '@udecode/plate';
 import {pluginsBasic, initialValueBasicElements} from './plugins/pluginsBasic'
 import {FIELD} from "./plugins/field/defaults";
-import {FieldElement} from "./plugins/field/fieldElement";
-import {createFieldPlugin} from "./plugins/field/createFieldPlugin";
+import {FieldElement} from "./plugins/field/component/fieldElement";
+import {createFieldPlugin} from "./plugins/field/utils/createFieldPlugin";
 import {BallonToolbarMarks, HeadingToolbarMarks} from "./toolbar/toolbar";
 import {MARK_BG_COLOR, MARK_COLOR, MARK_FONT_SIZE} from "@udecode/plate-font";
 import {StyledLeaf, withStyledProps} from "@udecode/plate-styled-components";
