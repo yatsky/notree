@@ -9,8 +9,7 @@ import {MARK_BG_COLOR, MARK_COLOR, MARK_FONT_SIZE} from "@udecode/plate-font";
 import {StyledLeaf, withStyledProps} from "@udecode/plate-styled-components";
 import {serializeHTMLFromNodes} from "@udecode/plate-html-serializer";
 import {useEventEditorId, useStoreEditorRef} from "@udecode/plate-core";
-import {html} from 'js-beautify'
-import FileSaver from 'file-saver'
+import {handleExport} from "./utils/export";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -58,37 +57,10 @@ function App() {
         preserveClassNames: ["slate-", "notree-"]
     }))
 
-    const handleExport = async () => {
-        // setLoadingExport(true)
-        // Why plugins and parser: https://github.com/prettier/prettier/pull/6268#issue-294147726
-        // let text = prettier.format(serializeHTMLFromNodes({ plugins: plugins, nodes: editor.children }), {
-        //   parser: 'html',
-        //   plugins: [parserHTML],
-        // })
-        let text = (
-            html(
-                serializeHTMLFromNodes(createEditorPlugins(plugins), {
-                    plugins: plugins,
-                    nodes: editor.children,
-                    preserveClassNames: ["slate-", "notree-"],
-                })
-            )
-        )
-        let regex = /{{/gm;
-        let subst = `{%`;
-        let result = text.replace(regex, subst);
-        regex = /}}/gm;
-        subst = `%}`;
-        result = result.replace(regex, subst);
-
-        let blob = new Blob([result], { type: 'text/html;charset=utf-8' })
-        await FileSaver.saveAs(blob, 'notree-download.html')
-        // setLoadingExport(false)
-    }
     return (
         <>
             <button onClick={handleHTMLChange}>Print</button>
-            <button onClick={handleExport}>Export</button>
+            <button onClick={()=> handleExport(plugins, editor)}>Export</button>
             <BallonToolbarMarks/>
             <HeadingToolbarMarks/>
             <Plate id="1" editableProps={editableProps}
