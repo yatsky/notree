@@ -76,6 +76,7 @@ function App() {
     return (
         <>
             <button onClick={handleHTMLChange}>Print</button>
+            <button onClick={() => handleExport(plugins, appVal)}>Export</button>
             {pageButtons()}
             <BallonToolbarMarks/>
             <HeadingToolbarMarks/>
