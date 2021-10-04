@@ -74,7 +74,14 @@ function App() {
                 })
             )
         )
-        let blob = new Blob([text], { type: 'text/html;charset=utf-8' })
+        let regex = /{{/gm;
+        let subst = `{%`;
+        let result = text.replace(regex, subst);
+        regex = /}}/gm;
+        subst = `%}`;
+        result = result.replace(regex, subst);
+
+        let blob = new Blob([result], { type: 'text/html;charset=utf-8' })
         await FileSaver.saveAs(blob, 'notree-download.html')
         // setLoadingExport(false)
     }

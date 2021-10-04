@@ -24,7 +24,14 @@ export const createFieldPlugin = (options) => ({
     // serialize needs to be an object, not method
     serialize: {
         element: (props) => {
-            return <div className={"notree-" + props.element.model}><p>{props.element.label}</p></div>
+            const {label, name, model} = props.element
+            return <div className={"notree-" + props.element.model}>
+                <p>{label}</p>
+                {/* if I use % here it will cause the html output to be escaped */}
+                {`{{ formfield ${model}.${name} }}`}
+
+
+            </div>
         },
     },
     // withOverrides: withInlineVoid(options),
