@@ -43,7 +43,11 @@ const plugins = [
 function App() {
     const editor = useStoreEditorRef(useEventEditorId('focus'));
     const [htmlVal, setHTMLVal] = useState(null);
-    const [debugVal, setDebugVal] = useState(null);
+    const [appVal, setAppVal] = useState({
+        '1': initialValueBasicElements,
+        '2': initialValueBasicElements,
+    });
+    const [currentPage, setCurrentPage] = useState('1')
 
     const editableProps = {
         placeholder: 'Type...,',
@@ -57,26 +61,40 @@ function App() {
         preserveClassNames: ["slate-", "notree-"]
     }))
 
+    const selectPage = (val) => {
+        setCurrentPage(val)
+    }
+    const pageButtons = () => {
+        return Object.keys(appVal).map((el) => (
+            <button
+                key={el}
+                onClick={() => selectPage(el)}>
+                Page {el}
+            </button>))
+    }
+
     return (
         <>
             <button onClick={handleHTMLChange}>Print</button>
-            <button onClick={()=> handleExport(plugins, editor)}>Export</button>
+            {pageButtons()}
             <BallonToolbarMarks/>
             <HeadingToolbarMarks/>
-            <Plate id="1" editableProps={editableProps}
-                   initialValue={initialValueBasicElements}
+            <Plate id={"page" + currentPage} editableProps={editableProps}
+                   initialValue={appVal[currentPage]}
                    plugins={plugins}
                    components={components}
                    options={options}
                    onChange={(newV) => {
-                       setDebugVal(newV)
+                       setAppVal({
+                           ...appVal,
+                           [currentPage]: newV
+                       })
                        handleHTMLChange()
                    }}
             >
 
-                {JSON.stringify(debugVal)}
+                {JSON.stringify(appVal[currentPage])}
                 <br/>
-                {htmlVal}
             </Plate>
         </>
     );
