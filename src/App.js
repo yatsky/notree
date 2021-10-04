@@ -42,6 +42,7 @@ const plugins = [
 function App() {
     const editor = useStoreEditorRef(useEventEditorId('focus'));
     const [htmlVal, setHTMLVal] = useState(null);
+    const [debugVal, setDebugVal] = useState(null);
 
     const editableProps = {
         placeholder: 'Type...,',
@@ -65,8 +66,12 @@ function App() {
                    plugins={plugins}
                    components={components}
                    options={options}
+                   onChange={(newV) => {
+                       setDebugVal(newV)
+                   }}
             >
-                {htmlVal}
+
+                {JSON.stringify(debugVal)}
             </Plate>
         </>
     );
