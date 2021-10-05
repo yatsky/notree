@@ -10,6 +10,8 @@ import {StyledLeaf, withStyledProps} from "@udecode/plate-styled-components";
 import {serializeHTMLFromNodes} from "@udecode/plate-html-serializer";
 import {useEventEditorId, useStoreEditorRef} from "@udecode/plate-core";
 import {handleExport} from "./utils/export";
+import {addPage} from "./toolbar/page/addPage";
+import {deletePage} from "./toolbar/page/deletePage";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -66,16 +68,28 @@ function App() {
     }
     const pageButtons = () => {
         return Object.keys(appVal).map((el) => (
+            <>
             <button
                 key={el}
                 onClick={() => selectPage(el)}>
                 Page {el}
-            </button>))
+            </button>
+                <button
+                    key={'delete'+el}
+                    onClick={() => deletePage(appVal, setAppVal, el, setCurrentPage)}
+                    >
+                    Trash
+                </button>
+
+            </>
+            )
+        )
     }
 
     return (
         <>
             <button onClick={handleHTMLChange}>Print</button>
+            <button onClick={() => addPage(appVal, setAppVal, initialValueBasicElements)}>Add page</button>
             <button onClick={() => handleExport(plugins, appVal)}>Export</button>
             {pageButtons()}
             <BallonToolbarMarks/>
@@ -90,7 +104,6 @@ function App() {
                            ...appVal,
                            [currentPage]: newV
                        })
-                       handleHTMLChange()
                    }}
             >
 
