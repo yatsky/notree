@@ -4,14 +4,22 @@ import {pluginsBasic, initialValueBasicElements} from './plugins/pluginsBasic'
 import {FIELD} from "./plugins/field/defaults";
 import {FieldElement} from "./plugins/field/component/fieldElement";
 import {createFieldPlugin} from "./plugins/field/utils/createFieldPlugin";
-import {BallonToolbarMarks, HeadingToolbarMarks} from "./toolbar/toolbar";
+import {AppToolbar, BallonToolbarMarks, HeadingToolbarMarks} from "./toolbar/toolbar";
 import {MARK_BG_COLOR, MARK_COLOR, MARK_FONT_SIZE} from "@udecode/plate-font";
 import {StyledLeaf, withStyledProps} from "@udecode/plate-styled-components";
 import {serializeHTMLFromNodes} from "@udecode/plate-html-serializer";
 import {handleExport} from "./utils/export";
 import {addPage} from "./toolbar/page/addPage";
 import {deletePage} from "./toolbar/page/deletePage";
+import {Page} from "@styled-icons/fluentui-system-regular";
+import {PageDelete} from "@styled-icons/foundation"
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {PageAdd} from "@styled-icons/foundation";
+import {Print} from "@styled-icons/fluentui-system-regular"
+import {ArrowExportUp} from "@styled-icons/fluentui-system-regular"
+import Button from "react-bootstrap/Button";
+import {Row, Col, ButtonToolbar, Container, Stack} from "react-bootstrap";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -58,7 +66,7 @@ function App() {
     }
     const handleHTMLChange = (pageId) => setHTMLVal(serializeHTMLFromNodes(createEditorPlugins(plugins), {
         plugins: plugins, nodes:
-        appVal[pageId],
+            appVal[pageId],
         preserveClassNames: ["slate-", "notree-"]
     }))
 
@@ -67,49 +75,61 @@ function App() {
     }
     const pageButtons = () => {
         return Object.keys(appVal).map((el) => (
-            <>
-            <button
-                key={el}
-                onClick={() => selectPage(el)}>
-                Page {el}
-            </button>
-                <button
-                    key={'delete'+el}
-                    onClick={() => deletePage(appVal, setAppVal, el, setCurrentPage)}
+                <ButtonToolbar>
+                    <Button
+                        key={el}
+                        onMouseDown={() => selectPage(el)}
                     >
-                    Trash
-                </button>
-
-            </>
+                        Page {el}
+                    </Button>
+                    <Button
+                        key={'delete' + el}
+                        onMouseDown={() => deletePage(appVal, setAppVal, el, setCurrentPage)}
+                    >
+                        Trash
+                    </Button>
+                </ButtonToolbar>
             )
         )
     }
 
     return (
-        <div className="App">
-            <button onClick={() => handleHTMLChange(currentPage)}>Print</button>
-            <button onClick={() => addPage(appVal, setAppVal, initialValueBasicElements)}>Add page</button>
-            <button onClick={() => handleExport(plugins, appVal)}>Export</button>
-            {pageButtons()}
-            <BallonToolbarMarks/>
-            <HeadingToolbarMarks/>
-            <Plate id={"page" + currentPage} editableProps={editableProps}
-                   initialValue={appVal[currentPage]}
-                   plugins={plugins}
-                   components={components}
-                   options={options}
-                   onChange={(newV) => {
-                       setAppVal({
-                           ...appVal,
-                           [currentPage]: newV
-                       })
-                   }}
-            >
+        <Container>
+            <Row className="align-items-center">
+                <Col lg={2}>
+            <Stack gap={3}>
+                {pageButtons()}
+            </Stack>
+                </Col>
+                <Col lg>
+            <div className="App">
+                <AppToolbar
+                    handlePrint={() => handleHTMLChange(currentPage)}
+                    handleExport={handleExport}
+                    handleAddPage={() => addPage(appVal, setAppVal, initialValueBasicElements)}
+                />
+                <BallonToolbarMarks/>
+                <HeadingToolbarMarks/>
+                <Plate id={"page" + currentPage} editableProps={editableProps}
+                       initialValue={appVal[currentPage]}
+                       plugins={plugins}
+                       components={components}
+                       options={options}
+                       onChange={(newV) => {
+                           setAppVal({
+                               ...appVal,
+                               [currentPage]: newV
+                           })
+                       }}
+                >
 
-                {htmlVal}
-                <br/>
-            </Plate>
-        </div>
+                    {htmlVal}
+                    <br/>
+                </Plate>
+            </div>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

@@ -1,10 +1,10 @@
-import {BalloonToolbar, HeadingToolbar} from "@udecode/plate-toolbar";
+import {BalloonToolbar, HeadingToolbar, ToolbarButton} from "@udecode/plate-toolbar";
 import {ToolbarColorPicker, ToolbarImage, ToolbarLink, ToolbarMark, ToolbarTable,} from '@udecode/plate'
 import React from "react";
 import {getPlatePluginType, useEventEditorId, useStoreEditorRef} from "@udecode/plate-core";
 import {MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE} from "@udecode/plate-basic-marks";
 import {FormatUnderlined} from '@styled-icons/material/FormatUnderlined';
-import {FontDownload, FormatBold, FormatColorText, FormatItalic} from "@styled-icons/material";
+import {FontDownload, FormatBold, FormatColorText, FormatItalic, Print} from "@styled-icons/material";
 import {
     ToolbarButtonsAlign,
     ToolbarButtonsBasicElements,
@@ -17,32 +17,34 @@ import {
 import {MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import {Image, Link} from "@styled-icons/boxicons-regular";
 import {insertField} from "../plugins/field/utils/insertField";
+import {PageAdd} from "@styled-icons/foundation";
+import {ArrowExportUp} from "@styled-icons/fluentui-system-regular";
 
 export const HeadingToolbarMarks = () => {
     return (
         <HeadingToolbar>
-            <ToolbarButtonsBasicElements />
-            <ToolbarButtonsList />
-            <ToolbarButtonsBasicMarks />
-            <ToolbarHighlight />
+            <ToolbarButtonsBasicElements/>
+            <ToolbarButtonsList/>
+            <ToolbarButtonsBasicMarks/>
+            <ToolbarHighlight/>
             <ToolbarColorPicker
                 pluginKey={MARK_COLOR}
-                icon={<FormatColorText />}
+                icon={<FormatColorText/>}
             />
 
             <ToolbarColorPicker
                 pluginKey={MARK_BG_COLOR}
-                icon={<FontDownload />}
+                icon={<FontDownload/>}
             />
-            <ToolbarKbd />
-            <ToolbarButtonsAlign />
-            <ToolbarLink icon={<Link />} />
-            <ToolbarImage icon={<Image />} />
-            <ToolbarButtonsTable />
+            <ToolbarKbd/>
+            <ToolbarButtonsAlign/>
+            <ToolbarLink icon={<Link/>}/>
+            <ToolbarImage icon={<Image/>}/>
+            <ToolbarButtonsTable/>
             {/*use this to INSERT a field*/}
             <ToolbarTable transform={insertField}
-                            icon="N"
-                            />
+                          icon="N"
+            />
         </HeadingToolbar>
     )
 }
@@ -72,19 +74,37 @@ export const BallonToolbarMarks = () => {
         >
             <ToolbarMark
                 type={getPlatePluginType(editor, MARK_BOLD)}
-                icon={<FormatBold />}
-                tooltip={{ content: 'Bold (⌘B)', ...tooltip }}
+                icon={<FormatBold/>}
+                tooltip={{content: 'Bold (⌘B)', ...tooltip}}
             />
             <ToolbarMark
                 type={getPlatePluginType(editor, MARK_ITALIC)}
-                icon={<FormatItalic />}
-                tooltip={{ content: 'Italic (⌘I)', ...tooltip }}
+                icon={<FormatItalic/>}
+                tooltip={{content: 'Italic (⌘I)', ...tooltip}}
             />
             <ToolbarMark
                 type={getPlatePluginType(editor, MARK_UNDERLINE)}
-                icon={<FormatUnderlined />}
-                tooltip={{ content: 'Underline (⌘U)', ...tooltip }}
+                icon={<FormatUnderlined/>}
+                tooltip={{content: 'Underline (⌘U)', ...tooltip}}
             />
         </BalloonToolbar>
     );
 };
+
+export const AppToolbar = ({handlePrint, handleAddPage, handleExport}) => {
+
+    return <HeadingToolbar>
+        <ToolbarButton
+            icon={<Print/>}
+            onMouseDown={handlePrint}
+        />
+        <ToolbarButton
+            icon={<PageAdd/>}
+            onMouseDown={handleAddPage}
+        />
+        <ToolbarButton
+            icon={<ArrowExportUp/>}
+            onMouseDown={handleExport}
+        />
+    </HeadingToolbar>
+}
