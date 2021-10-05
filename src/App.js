@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {createEditorPlugins, createPlateComponents, createPlateOptions, Plate} from '@udecode/plate';
-import {pluginsBasic, initialValueBasicElements} from './plugins/pluginsBasic'
+import {initialValueBasicElements, pluginsBasic} from './plugins/pluginsBasic'
 import {FIELD} from "./plugins/field/defaults";
 import {FieldElement} from "./plugins/field/component/fieldElement";
 import {createFieldPlugin} from "./plugins/field/utils/createFieldPlugin";
@@ -11,15 +11,10 @@ import {serializeHTMLFromNodes} from "@udecode/plate-html-serializer";
 import {handleExport} from "./utils/export";
 import {addPage} from "./toolbar/page/addPage";
 import {deletePage} from "./toolbar/page/deletePage";
-import {Page} from "@styled-icons/fluentui-system-regular";
-import {PageDelete} from "@styled-icons/foundation"
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {PageAdd} from "@styled-icons/foundation";
-import {Print} from "@styled-icons/fluentui-system-regular"
-import {ArrowExportUp} from "@styled-icons/fluentui-system-regular"
 import Button from "react-bootstrap/Button";
-import {Row, Col, ButtonToolbar, Container, Stack} from "react-bootstrap";
+import {ButtonToolbar, Col, Container, Row, Stack} from "react-bootstrap";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -97,36 +92,36 @@ function App() {
         <Container>
             <Row className="align-items-center">
                 <Col lg={2}>
-            <Stack gap={3}>
-                {pageButtons()}
-            </Stack>
+                    <Stack gap={3}>
+                        <AppToolbar
+                            handlePrint={() => handleHTMLChange(currentPage)}
+                            handleExport={handleExport}
+                            handleAddPage={() => addPage(appVal, setAppVal, initialValueBasicElements)}
+                        />
+                        {pageButtons()}
+                    </Stack>
                 </Col>
                 <Col lg>
-            <div className="App">
-                <AppToolbar
-                    handlePrint={() => handleHTMLChange(currentPage)}
-                    handleExport={handleExport}
-                    handleAddPage={() => addPage(appVal, setAppVal, initialValueBasicElements)}
-                />
-                <BallonToolbarMarks/>
-                <HeadingToolbarMarks/>
-                <Plate id={"page" + currentPage} editableProps={editableProps}
-                       initialValue={appVal[currentPage]}
-                       plugins={plugins}
-                       components={components}
-                       options={options}
-                       onChange={(newV) => {
-                           setAppVal({
-                               ...appVal,
-                               [currentPage]: newV
-                           })
-                       }}
-                >
+                    <div className="App">
+                        <BallonToolbarMarks/>
+                        <HeadingToolbarMarks/>
+                        <Plate id={"page" + currentPage} editableProps={editableProps}
+                               initialValue={appVal[currentPage]}
+                               plugins={plugins}
+                               components={components}
+                               options={options}
+                               onChange={(newV) => {
+                                   setAppVal({
+                                       ...appVal,
+                                       [currentPage]: newV
+                                   })
+                               }}
+                        >
 
-                    {htmlVal}
-                    <br/>
-                </Plate>
-            </div>
+                            {htmlVal}
+                            <br/>
+                        </Plate>
+                    </div>
                 </Col>
             </Row>
         </Container>
