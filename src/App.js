@@ -11,6 +11,7 @@ import {serializeHTMLFromNodes} from "@udecode/plate-html-serializer";
 import {handleExport} from "./utils/export";
 import {addPage} from "./toolbar/page/addPage";
 import {deletePage} from "./toolbar/page/deletePage";
+import './App.css'
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -85,7 +86,7 @@ function App() {
     }
 
     return (
-        <>
+        <div className="App">
             <button onClick={() => handleHTMLChange(currentPage)}>Print</button>
             <button onClick={() => addPage(appVal, setAppVal, initialValueBasicElements)}>Add page</button>
             <button onClick={() => handleExport(plugins, appVal)}>Export</button>
@@ -108,7 +109,7 @@ function App() {
                 {htmlVal}
                 <br/>
             </Plate>
-        </>
+        </div>
     );
 }
 
