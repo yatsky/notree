@@ -8,7 +8,6 @@ import {BallonToolbarMarks, HeadingToolbarMarks} from "./toolbar/toolbar";
 import {MARK_BG_COLOR, MARK_COLOR, MARK_FONT_SIZE} from "@udecode/plate-font";
 import {StyledLeaf, withStyledProps} from "@udecode/plate-styled-components";
 import {serializeHTMLFromNodes} from "@udecode/plate-html-serializer";
-import {useEventEditorId, useStoreEditorRef} from "@udecode/plate-core";
 import {handleExport} from "./utils/export";
 import {addPage} from "./toolbar/page/addPage";
 import {deletePage} from "./toolbar/page/deletePage";
@@ -43,7 +42,6 @@ const plugins = [
 ]
 
 function App() {
-    const editor = useStoreEditorRef(useEventEditorId('focus'));
     const [htmlVal, setHTMLVal] = useState(null);
     const [appVal, setAppVal] = useState({
         '1': initialValueBasicElements,
@@ -57,9 +55,9 @@ function App() {
             padding: '15px'
         }
     }
-    const handleHTMLChange = () => setHTMLVal(serializeHTMLFromNodes(createEditorPlugins(plugins), {
+    const handleHTMLChange = (pageId) => setHTMLVal(serializeHTMLFromNodes(createEditorPlugins(plugins), {
         plugins: plugins, nodes:
-        editor.children,
+        appVal[pageId],
         preserveClassNames: ["slate-", "notree-"]
     }))
 
@@ -88,7 +86,7 @@ function App() {
 
     return (
         <>
-            <button onClick={handleHTMLChange}>Print</button>
+            <button onClick={() => handleHTMLChange(currentPage)}>Print</button>
             <button onClick={() => addPage(appVal, setAppVal, initialValueBasicElements)}>Add page</button>
             <button onClick={() => handleExport(plugins, appVal)}>Export</button>
             {pageButtons()}
@@ -107,7 +105,7 @@ function App() {
                    }}
             >
 
-                {JSON.stringify(appVal[currentPage])}
+                {htmlVal}
                 <br/>
             </Plate>
         </>
