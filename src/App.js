@@ -90,9 +90,9 @@ function App() {
 
     return (
         <Container>
-            <Row className="align-items-center">
+            <Row>
                 <Col lg={2}>
-                    <Stack gap={3}>
+                    <Stack gap={3} className="sticky-top menu">
                         <AppToolbar
                             handlePrint={() => handleHTMLChange(currentPage)}
                             handleExport={() => handleExport(plugins, appVal)}
@@ -104,7 +104,9 @@ function App() {
                 <Col lg>
                     <div className="App">
                         <BallonToolbarMarks/>
-                        <HeadingToolbarMarks/>
+                        <div className="sticky-top bg-white">
+                            <HeadingToolbarMarks/>
+                        </div>
                         <Plate id={"page" + currentPage} editableProps={editableProps}
                                initialValue={appVal[currentPage]}
                                plugins={plugins}
