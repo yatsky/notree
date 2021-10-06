@@ -74,12 +74,14 @@ function App() {
                     <Button
                         key={el}
                         onMouseDown={() => selectPage(el)}
+                        className={el === currentPage ? "btn-primary" : "btn-secondary"}
                     >
                         Page {el}
                     </Button>
                     <Button
                         key={'delete' + el}
                         onMouseDown={() => deletePage(appVal, setAppVal, el, setCurrentPage)}
+                        className={el === currentPage ? "btn-primary" : "btn-secondary"}
                     >
                         Trash
                     </Button>
