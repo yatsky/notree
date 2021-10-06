@@ -21,7 +21,7 @@ export const FieldElement = (props) => {
     // https://docs.slatejs.org/concepts/09-rendering
     const {attributes, children, element} = props;
     const editor = useEditorRef();
-    const [fieldHidden, setFieldHidden] = useState(false)
+    const [fieldHidden, setFieldHidden] = useState(true)
 
     const isValidName = (val) => {
         return !val.includes(" ");
