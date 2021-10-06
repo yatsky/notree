@@ -12,6 +12,7 @@ export const FieldType = ({onFieldTypeChange}) => {
                 onChange={onFieldTypeChange}
             />{' '}
             {opt}
+            {' '}
         </label>
     })
     return <div>

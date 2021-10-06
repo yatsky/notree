@@ -12,6 +12,7 @@ export const Model = ({onModelChange}) => {
                 onChange={onModelChange}
             />{' '}
             {opt}
+            {' '}
         </label>
     })
     return <div>

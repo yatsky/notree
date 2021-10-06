@@ -11,6 +11,7 @@ export const CanBeBlank = ({onCanBeBlankChange}) => {
                 onChange={onCanBeBlankChange}
             />{' '}
             {opt}
+            {' '}
         </label>
     })
     return <div>

@@ -12,6 +12,7 @@ export const Widget = ({onWidgetChange}) => {
                 onChange={onWidgetChange}
             />{' '}
             {opt}
+            {' '}
         </label>
     })
     return <div>
