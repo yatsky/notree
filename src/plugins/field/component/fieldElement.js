@@ -131,15 +131,14 @@ export const FieldElement = (props) => {
                             />
                         </Col>
                     </Row>
-                    <Row>
-                        <Col className="field-preview">
-                            <h4>
+                    <Row className="field-preview">
+                        <Col className="col-4">
+                            <h5>
                                 Preview of field:
-                            </h4>
+                            </h5>
                             <pre>{element.name}</pre>
-                            <p>
-                            </p>
-
+                        </Col>
+                        <Col>
                             <Form.Group controlId="field-preview">
                                 <Form.Label>{element.label}</Form.Label>
                                 <Form.Control
