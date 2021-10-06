@@ -95,7 +95,7 @@ function App() {
                     <Stack gap={3}>
                         <AppToolbar
                             handlePrint={() => handleHTMLChange(currentPage)}
-                            handleExport={handleExport}
+                            handleExport={() => handleExport(plugins, appVal)}
                             handleAddPage={() => addPage(appVal, setAppVal, initialValueBasicElements)}
                         />
                         {pageButtons()}
