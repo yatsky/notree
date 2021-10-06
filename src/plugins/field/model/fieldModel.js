@@ -8,7 +8,7 @@ export const fieldModel = {
     initialValue: "",
     canBeBlank: false,
     doc: "",
-    label: "",
+    label: "What is your age?",
     children: [
         {text: "Field"}
     ]
@@ -27,6 +27,7 @@ export const FieldTypeOptions = [
     "boolean",
 ]
 export const WidgetOptions = [
+    "none",
     "radio-select",
     "radio-select-horizontal",
     "dice",

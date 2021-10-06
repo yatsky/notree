@@ -100,35 +100,55 @@ export const FieldElement = (props) => {
         <div {...attributes} contentEditable={false} className="container">
             <div style={{boxShadow: '0 0 0 3px #ddd', padding: '8px'}}>
                 <div className="text-end menu-button">
-                <Button onClick={() => setFieldHidden(!fieldHidden)} size="sm" active={!fieldHidden}>
-                    {fieldHidden ? <Menu size="100%"/> : <X size="100%"/>}
-                </Button>
+                    <Button onClick={() => setFieldHidden(!fieldHidden)} size="sm" active={!fieldHidden}>
+                        {fieldHidden ? <Menu size="100%"/> : <X size="100%"/>}
+                    </Button>
                 </div>
                 <Form>
-                <Row className={fieldHidden ? 'hide' : ''}>
+                    <Row className={fieldHidden ? 'hide' : ''}>
                         <Col>
-                        <Name name={element.name} onNameChange={onNameChange}
-                        />
-                        <Label onLabelChange={onLabelChange}/>
-                        <Model
-                            onModelChange={onModelChange}
-                        />
-                        <FieldType
-                            onFieldTypeChange={onFieldTypeChange}
-                        />
+                            <Name name={element.name} onNameChange={onNameChange}
+                            />
+                            <Label
+                                label={element.label}
+                                onLabelChange={onLabelChange}/>
+                            <Model
+                                onModelChange={onModelChange}
+                            />
+                            <FieldType
+                                onFieldTypeChange={onFieldTypeChange}
+                            />
                         </Col>
                         <Col>
-                        <CanBeBlank
-                            onCanBeBlankChange={onCanBeBlankChange}
-                        />
-                        <Widget
-                            onWidgetChange={onWidgetChange}
-                        />
-                        <Doc
-                            onDocChange={onDocChange}
-                        />
+                            <CanBeBlank
+                                onCanBeBlankChange={onCanBeBlankChange}
+                            />
+                            <Widget
+                                onWidgetChange={onWidgetChange}
+                            />
+                            <Doc
+                                onDocChange={onDocChange}
+                            />
                         </Col>
-                </Row>
+                    </Row>
+                    <Row>
+                        <Col className="field-preview">
+                            <h4>
+                                Preview of field:
+                            </h4>
+                            <pre>{element.name}</pre>
+                            <p>
+                            </p>
+
+                            <Form.Group controlId="field-preview">
+                                <Form.Label>{element.label}</Form.Label>
+                                <Form.Control
+                                    style={{width: "40%"}}
+                                    type="text"
+                                />
+                            </Form.Group>
+                        </Col>
+                    </Row>
                 </Form>
             </div>
             {children}
