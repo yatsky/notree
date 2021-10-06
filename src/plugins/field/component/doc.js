@@ -1,11 +1,9 @@
 import React from 'react';
+import Form from "react-bootstrap/Form";
 
 export const Doc = ({onDocChange}) => {
-    return <div>
-        <h4>Field documentation: </h4>
-        <textarea
-            style={{margin: '8px 0'}}
-            onChange={onDocChange}
-        />
-    </div>
+    return <Form.Group controlId="field-doc">
+        <Form.Label>Field documentation</Form.Label>
+        <Form.Control as="textarea" rows={1} onChange={onDocChange} />
+    </Form.Group>
 }

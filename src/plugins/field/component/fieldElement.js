@@ -9,6 +9,13 @@ import {Widget} from "./widget";
 import {Name} from "./name";
 import {Label} from "./label";
 import {Doc} from "./doc";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import {Menu, X} from "@styled-icons/boxicons-regular";
+import Row from "react-bootstrap/Row";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '../fieldElement.css'
+import Col from "react-bootstrap/Col";
 
 export const FieldElement = (props) => {
     // https://docs.slatejs.org/concepts/09-rendering
@@ -90,26 +97,39 @@ export const FieldElement = (props) => {
 
     return (
         // Need contentEditable=false or Firefox has issues with certain input types.
-        <div {...attributes} contentEditable={false}>
+        <div {...attributes} contentEditable={false} className="container">
             <div style={{boxShadow: '0 0 0 3px #ddd', padding: '8px'}}>
-                <Name name={element.name} onNameChange={onNameChange}
-                />
-                <Label onLabelChange={onLabelChange}/>
-                <Model
-                    onModelChange={onModelChange}
-                />
-                <FieldType
-                    onFieldTypeChange={onFieldTypeChange}
-                />
-                <CanBeBlank
-                    onCanBeBlankChange={onCanBeBlankChange}
-                />
-                <Widget
-                    onWidgetChange={onWidgetChange}
-                />
-                <Doc
-                    onDocChange={onDocChange}
-                />
+                <div className="text-end menu-button">
+                <Button onClick={() => setFieldHidden(!fieldHidden)} size="sm" active={!fieldHidden}>
+                    {fieldHidden ? <Menu size="100%"/> : <X size="100%"/>}
+                </Button>
+                </div>
+                <Form>
+                <Row className={fieldHidden ? 'hide' : ''}>
+                        <Col>
+                        <Name name={element.name} onNameChange={onNameChange}
+                        />
+                        <Label onLabelChange={onLabelChange}/>
+                        <Model
+                            onModelChange={onModelChange}
+                        />
+                        <FieldType
+                            onFieldTypeChange={onFieldTypeChange}
+                        />
+                        </Col>
+                        <Col>
+                        <CanBeBlank
+                            onCanBeBlankChange={onCanBeBlankChange}
+                        />
+                        <Widget
+                            onWidgetChange={onWidgetChange}
+                        />
+                        <Doc
+                            onDocChange={onDocChange}
+                        />
+                        </Col>
+                </Row>
+                </Form>
             </div>
             {children}
         </div>

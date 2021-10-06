@@ -1,23 +1,23 @@
 import React from "react";
 import {ModelOptions} from "../model/fieldModel";
+import Form from "react-bootstrap/Form";
 
 export const Model = ({onModelChange}) => {
-    const opts = ModelOptions.map(opt => {
-        return <label>
-            <input
-                style={{width: 'unset'}}
-                type="radio"
-                name="model"
-                value={opt}
-                onChange={onModelChange}
-            />{' '}
-            {opt}
-            {' '}
-        </label>
+    const opts = ModelOptions.map((opt, idx) => {
+        return (
+            <option key={idx} value={opt}>
+                {opt}
+            </option>
+        )
     })
-    return <div>
-        <h4>Form Model</h4>
-        {opts}
-    </div>
+    return <Form.Group controlId="field-model">
+            <Form.Label>Field model</Form.Label>
+            <Form.Control
+                as="select"
+                onChange={onModelChange}
+            >
+                {opts}
+            </Form.Control>
+    </Form.Group>
 }
 

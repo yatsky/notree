@@ -1,23 +1,15 @@
 import React from "react";
+import Form from "react-bootstrap/Form";
 
 export const CanBeBlank = ({onCanBeBlankChange}) => {
-    const opts =  ["Yes", "No"].map(opt => {
-        return <label>
-            <input
-                style={{width: 'unset'}}
-                type="radio"
-                name="canBeBlank"
-                value={opt}
-                onChange={onCanBeBlankChange}
-            />{' '}
-            {opt}
-            {' '}
-        </label>
-    })
-    return <div>
-        <h4>
-            Can this field be blank?
-        </h4>
-        {opts}
-    </div>
+    return <Form.Group controlId="field-blank">
+        <Form.Label>Can this field be blank?</Form.Label>
+        <Form.Control
+            as="select"
+            onChange={onCanBeBlankChange}
+        >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </Form.Control>
+    </Form.Group>
 }

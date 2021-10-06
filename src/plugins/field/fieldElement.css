@@ -1,0 +1,7 @@
+.hide {
+    display: none;
+}
+
+.menu-button button {
+    max-width: 5%;
+}

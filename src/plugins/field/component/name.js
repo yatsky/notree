@@ -1,13 +1,16 @@
 import React from 'react';
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 
 export const Name = ({name, onNameChange}) => {
     return <div>
-        <h4>Field Name: </h4>
-        <input
-            style={{margin: '8px 0'}}
-            type="text"
-            value={name}
-            onChange={onNameChange}
-        />
+        <Form.Group controlId="field-name">
+            <Form.Label>Field name</Form.Label>
+            <Form.Control
+                type="text"
+                value={name}
+                onChange={onNameChange}
+            />
+        </Form.Group>
     </div>
 }

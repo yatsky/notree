@@ -1,11 +1,13 @@
 import React from 'react';
+import Form from "react-bootstrap/Form";
 
 export const Label = ({onLabelChange}) => {
-    return <div>
-        <h4>Field Label: </h4>
-        <textarea
-            style={{margin: '8px 0'}}
+    return <Form.Group controlId="field-label">
+        <Form.Label>Field label</Form.Label>
+        <Form.Control
+            as="textarea"
+            rows={1}
             onChange={onLabelChange}
         />
-    </div>
+    </Form.Group>
 }
