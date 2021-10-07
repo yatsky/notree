@@ -25,6 +25,7 @@
     "slate-react": "^0.66.4",
     "styled-components": "^5.3.1",
     "tippy.js": "^6.3.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

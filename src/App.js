@@ -17,6 +17,7 @@ import Button from "react-bootstrap/Button";
 import {ButtonToolbar, Col, Container, Row, Stack} from "react-bootstrap";
 import {Input} from "@styled-icons/material";
 import Form from "react-bootstrap/Form";
+import {appData} from "./model/appData";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -49,11 +50,12 @@ const plugins = [
 
 function App() {
     const [htmlVal, setHTMLVal] = useState(null);
-    const [appVal, setAppVal] = useState({
-        '1': initialValueBasicElements,
-        '2': initialValueBasicElements,
-    });
-    const [currentPage, setCurrentPage] = useState('1')
+    const [pagesData, setAppVal] = useState(appData["pagesData"]);
+
+    // order matters, cannot contain duplicates
+    const [pages, setPages] = useState(['1', '2'])
+
+    const [currentPage, setCurrentPage] = useState(pagesData[0].pageId)
 
     const editableProps = {
         placeholder: 'Type...,',
@@ -61,43 +63,46 @@ function App() {
             padding: '15px'
         }
     }
-    const handleHTMLChange = (pageId) => setHTMLVal(serializeHTMLFromNodes(createEditorPlugins(plugins), {
-        plugins: plugins, nodes:
-            appVal[pageId],
-        preserveClassNames: ["slate-", "notree-"]
-    }))
+    const handleHTMLChange = (pageId) => {
+        const pageData = pagesData.find((pageData) => pageData.pageId === pageId)
+        setHTMLVal(serializeHTMLFromNodes(createEditorPlugins(plugins), {
+            plugins: plugins, nodes:
+            pageData.nodes,
+            preserveClassNames: ["slate-", "notree-"]
+        }))
+    }
 
     const selectPage = (val) => {
         setCurrentPage(val)
     }
 
     const handlePageNameChange = (newName, currentPage) => {
-        appVal[newName] = appVal[currentPage]
-        deletePage(appVal, setAppVal, currentPage, setCurrentPage)
+        pagesData[newName] = pagesData[currentPage]
+        deletePage(pagesData, setAppVal, currentPage, setCurrentPage)
         setCurrentPage(newName)
     }
 
     const pageButtons = () => {
-        return Object.keys(appVal).map((el) => (
+        return pagesData.map((el) => (
                 <ButtonToolbar>
                     <Button
-                        key={el}
-                        onMouseDown={() => selectPage(el)}
-                        className={el === currentPage ? "btn-primary" : "btn-secondary"}
+                        key={el.pageId}
+                        onMouseDown={() => selectPage(el.pageId)}
+                        className={el.pageId === currentPage ? "btn-primary" : "btn-secondary"}
                     >
-                        {el}
+                        {el.pageName}
                     </Button>
                     <Button
-                        key={'delete' + el}
-                        onMouseDown={() => deletePage(appVal, setAppVal, el, setCurrentPage)}
-                        className={el === currentPage ? "btn-primary" : "btn-secondary"}
+                        key={'delete' + el.pageId}
+                        onMouseDown={() => deletePage(pagesData, setAppVal, el.pageId, setCurrentPage)}
+                        className={el.pageId === currentPage ? "btn-primary" : "btn-secondary"}
                     >
                         Trash
                     </Button>
 
                     <Form.Control
                         type="text"
-                        value={el}
+                        value={el.pageName}
                         style={{cursor: 'pointer'}}
                         onChange={(e) => handlePageNameChange(e.target.value, currentPage)}
                     />
@@ -113,8 +118,8 @@ function App() {
                     <Stack gap={3} className="sticky-top menu">
                         <AppToolbar
                             handlePrint={() => handleHTMLChange(currentPage)}
-                            handleExport={() => handleExport(plugins, appVal)}
-                            handleAddPage={() => addPage(appVal, setAppVal, initialValueBasicElements)}
+                            handleExport={() => handleExport(plugins, pagesData)}
+                            handleAddPage={() => addPage(pagesData, setAppVal, initialValueBasicElements)}
                         />
                         {pageButtons()}
                     </Stack>
@@ -126,13 +131,13 @@ function App() {
                             <HeadingToolbarMarks/>
                         </div>
                         <Plate id={"page" + currentPage} editableProps={editableProps}
-                               initialValue={appVal[currentPage]}
+                               initialValue={pagesData[0].nodes}
                                plugins={plugins}
                                components={components}
                                options={options}
                                onChange={(newV) => {
                                    setAppVal({
-                                       ...appVal,
+                                       ...pagesData,
                                        [currentPage]: newV
                                    })
                                }}

@@ -3,18 +3,18 @@ import {serializeHTMLFromNodes} from "@udecode/plate-html-serializer";
 import {createEditorPlugins} from "@udecode/plate";
 import FileSaver from 'file-saver'
 
-export const handleExport = async (plugins, appVal) => {
+export const handleExport = async (plugins, pagesData) => {
     // setLoadingExport(true)
     // Why plugins and parser: https://github.com/prettier/prettier/pull/6268#issue-294147726
     // let text = prettier.format(serializeHTMLFromNodes({ plugins: plugins, nodes: editor.children }), {
     //   parser: 'html',
     //   plugins: [parserHTML],
     // })
-    let text = Object.values(appVal).map(values =>
+    let text = pagesData.map(pageData =>
         html(
             serializeHTMLFromNodes(createEditorPlugins(plugins), {
                 plugins: plugins,
-                nodes: values,
+                nodes: pageData.nodes,
                 preserveClassNames: ["slate-", "notree-"],
             })
         )
