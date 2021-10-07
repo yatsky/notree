@@ -15,6 +15,8 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from "react-bootstrap/Button";
 import {ButtonToolbar, Col, Container, Row, Stack} from "react-bootstrap";
+import {Input} from "@styled-icons/material";
+import Form from "react-bootstrap/Form";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -68,6 +70,13 @@ function App() {
     const selectPage = (val) => {
         setCurrentPage(val)
     }
+
+    const handlePageNameChange = (newName, currentPage) => {
+        appVal[newName] = appVal[currentPage]
+        deletePage(appVal, setAppVal, currentPage, setCurrentPage)
+        setCurrentPage(newName)
+    }
+
     const pageButtons = () => {
         return Object.keys(appVal).map((el) => (
                 <ButtonToolbar>
@@ -76,7 +85,7 @@ function App() {
                         onMouseDown={() => selectPage(el)}
                         className={el === currentPage ? "btn-primary" : "btn-secondary"}
                     >
-                        Page {el}
+                        {el}
                     </Button>
                     <Button
                         key={'delete' + el}
@@ -85,6 +94,13 @@ function App() {
                     >
                         Trash
                     </Button>
+
+                    <Form.Control
+                        type="text"
+                        value={el}
+                        style={{cursor: 'pointer'}}
+                        onChange={(e) => handlePageNameChange(e.target.value, currentPage)}
+                    />
                 </ButtonToolbar>
             )
         )
