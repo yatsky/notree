@@ -8,6 +8,7 @@ export const PageButtons = (handleAppDataChange, toggleNameReadOnly, handlePageN
     return <ButtonToolbar>
         <Form.Control
             type="text"
+            className={pageData.selected ? "bg-primary text-white" : ""}
             value={pageData.pageName}
             style={{cursor: 'pointer'}}
             onClick={() => selectPage(pageData.pageId)}
