@@ -4,22 +4,32 @@ import {deletePage} from "./deletePage";
 import Form from "react-bootstrap/Form";
 import React from "react";
 
-export const pageButtons = (pagesData, handleAppDataChange, handlePageNameChange, pageData, selectPage) => {
-   return <ButtonToolbar>
-      <Form.Control
-          type="text"
-          value={pageData.pageName}
-          style={{cursor: 'pointer'}}
-          onMouseDown={() => selectPage(pageData.pageId)}
-          readOnly={true}
-      />
+export const PageButtons = (handleAppDataChange, toggleNameReadOnly, handlePageNameChange, pageData, selectPage) => {
+    return <ButtonToolbar>
+        <Form.Control
+            type="text"
+            value={pageData.pageName}
+            style={{cursor: 'pointer'}}
+            onClick={() => selectPage(pageData.pageId)}
+            onDoubleClick={() => {
+                toggleNameReadOnly(pageData.pageId, false)
+            }}
+            onBlur={(e) => {
+                handlePageNameChange(e.target.value)
+                toggleNameReadOnly(pageData.pageId, true)
+            }}
+            onChange={(e) => {
+                handlePageNameChange(e.target.value)
+            }}
+            readOnly={pageData.nameReadOnly}
+        />
 
-      <Button
-          key={'delete' + pageData.pageId}
-          onMouseDown={() => deletePage(pagesData, handleAppDataChange, pageData.pageId)}
-          className={pageData.selected ? "btn-primary" : "btn-secondary"}
-      >
-         Trash
-      </Button>
-   </ButtonToolbar>
+        <Button
+            key={'delete' + pageData.pageId}
+            onClick={() => deletePage(handleAppDataChange, pageData.pageId)}
+            className={pageData.selected ? "btn-primary" : "btn-secondary"}
+        >
+            Trash
+        </Button>
+    </ButtonToolbar>
 }

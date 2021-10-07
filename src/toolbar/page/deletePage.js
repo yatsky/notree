@@ -1,3 +1,3 @@
-export const deletePage = (appVal, handleAppDataChange, pageId) => {
-    handleAppDataChange("D", pageId, appVal)
+export const deletePage = (handleAppDataChange, pageId) => {
+    handleAppDataChange("D", null, pageId)
 }

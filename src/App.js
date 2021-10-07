@@ -10,14 +10,12 @@ import {StyledLeaf, withStyledProps} from "@udecode/plate-styled-components";
 import {serializeHTMLFromNodes} from "@udecode/plate-html-serializer";
 import {handleExport} from "./utils/export";
 import {addPage} from "./toolbar/page/addPage";
-import {deletePage} from "./toolbar/page/deletePage";
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Col, Container, Row, Stack} from "react-bootstrap";
 import {initialAppData} from "./model/initialAppData";
-import {pageButtons} from "./toolbar/page/pageButton";
+import {PageButtons} from "./toolbar/page/pageButton";
 import {v4 as uuidv4} from "uuid";
-import {useEditorRef} from "@udecode/plate-core";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -52,13 +50,26 @@ function App() {
     const [htmlVal, setHTMLVal] = useState(null);
     const [appData, setAppData] = useState(initialAppData);
     const {pagesData} = appData
-    const handleAppDataChange = (op, nodes) => {
+
+    const toggleNameReadOnly = (pageId, val) => {
+        let newPagesData
+        newPagesData = pagesData.map(pageData => pageData.pageId === pageId ? {
+            ...pageData,
+            nameReadOnly: val
+        }: pageData)
+        setAppData(
+            {
+                ...appData,
+                "pagesData": newPagesData
+            }
+        )
+    }
+    const handleAppDataChange = (op, nodes, pageId = "") => {
         const {pagesData} = appData
         let newPagesData
         if (op === "U") {
-            newPagesData = pagesData.map(pageData => pageData.selected ? {...pageData, "nodes": nodes}: pageData)
-        }
-        else if (op === "C") {
+            newPagesData = pagesData.map(pageData => pageData.selected ? {...pageData, "nodes": nodes} : pageData)
+        } else if (op === "C") {
             newPagesData = [
                 ...pagesData,
                 {
@@ -67,9 +78,11 @@ function App() {
                     "nodes": initialValueBasicElements,
                 },
             ]
-        }
-        else if (op === "D") {
-            newPagesData = pagesData.filter(pageData => !pageData.selected)[0]
+        } else if (op === "D") {
+            newPagesData = pagesData.map(pageData => {
+                return {...pageData, "deleted": pageData.pageId === pageId}
+            })
+            newPagesData[0].selected = true
         }
         setAppData(
             {
@@ -95,7 +108,10 @@ function App() {
     }
 
     const selectPage = (pageId) => {
-        const newPagesData = pagesData.map(pageData => {return {...pageData, "selected": pageData.pageId === pageId}})
+        const newPagesData = pagesData.map(pageData => {
+            return {...pageData, "selected": pageData.pageId === pageId}
+        })
+        console.log(newPagesData)
         setAppData(
             {
                 ...appData,
@@ -105,13 +121,21 @@ function App() {
     }
 
     const handlePageNameChange = (newName) => {
-        const pageData = pagesData.find((pageData) => pageData.selected)[0].pageName
+        const newPagesData = pagesData.map(pageData => {
+            return pageData.selected ? {...pageData, "pageName": newName} : pageData
+        })
+        setAppData(
+            {
+                ...appData,
+                "pagesData": newPagesData
+            }
+        )
     }
 
     const pageButtonsGroup = () => {
         return pagesData.map((el) => (
-                pageButtons(pagesData, handleAppDataChange,
-                    handlePageNameChange, el, selectPage)
+                !el.deleted ? PageButtons(handleAppDataChange,
+                    toggleNameReadOnly, handlePageNameChange, el, selectPage) : <></>
             )
         )
     }
@@ -134,7 +158,8 @@ function App() {
                         <div className="sticky-top bg-white">
                             <HeadingToolbarMarks/>
                         </div>
-                        <Plate id={pagesData.filter(pageData => pageData.selected)[0].pageId} editableProps={editableProps}
+                        <Plate id={pagesData.filter(pageData => pageData.selected)[0].pageId}
+                               editableProps={editableProps}
                                initialValue={pagesData.filter(pageData => pageData.selected)[0].nodes}
                                value={pagesData.filter(pageData => pageData.selected)[0].nodes}
                                plugins={plugins}
