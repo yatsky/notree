@@ -13,11 +13,11 @@ import {addPage} from "./toolbar/page/addPage";
 import {deletePage} from "./toolbar/page/deletePage";
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from "react-bootstrap/Button";
-import {ButtonToolbar, Col, Container, Row, Stack} from "react-bootstrap";
-import {Input} from "@styled-icons/material";
-import Form from "react-bootstrap/Form";
-import {appData} from "./model/appData";
+import {Col, Container, Row, Stack} from "react-bootstrap";
+import {initialAppData} from "./model/initialAppData";
+import {pageButtons} from "./toolbar/page/pageButton";
+import {v4 as uuidv4} from "uuid";
+import {useEditorRef} from "@udecode/plate-core";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -50,12 +50,34 @@ const plugins = [
 
 function App() {
     const [htmlVal, setHTMLVal] = useState(null);
-    const [pagesData, setAppVal] = useState(appData["pagesData"]);
-
-    // order matters, cannot contain duplicates
-    const [pages, setPages] = useState(['1', '2'])
-
-    const [currentPage, setCurrentPage] = useState(pagesData[0].pageId)
+    const [appData, setAppData] = useState(initialAppData);
+    const {pagesData} = appData
+    const handleAppDataChange = (op, nodes) => {
+        const {pagesData} = appData
+        let newPagesData
+        if (op === "U") {
+            newPagesData = pagesData.map(pageData => pageData.selected ? {...pageData, "nodes": nodes}: pageData)
+        }
+        else if (op === "C") {
+            newPagesData = [
+                ...pagesData,
+                {
+                    "pageId": uuidv4(),
+                    "pageName": "New page",
+                    "nodes": initialValueBasicElements,
+                },
+            ]
+        }
+        else if (op === "D") {
+            newPagesData = pagesData.filter(pageData => !pageData.selected)[0]
+        }
+        setAppData(
+            {
+                ...appData,
+                "pagesData": newPagesData
+            }
+        )
+    }
 
     const editableProps = {
         placeholder: 'Type...,',
@@ -72,41 +94,24 @@ function App() {
         }))
     }
 
-    const selectPage = (val) => {
-        setCurrentPage(val)
+    const selectPage = (pageId) => {
+        const newPagesData = pagesData.map(pageData => {return {...pageData, "selected": pageData.pageId === pageId}})
+        setAppData(
+            {
+                ...appData,
+                "pagesData": newPagesData
+            }
+        )
     }
 
-    const handlePageNameChange = (newName, currentPage) => {
-        pagesData[newName] = pagesData[currentPage]
-        deletePage(pagesData, setAppVal, currentPage, setCurrentPage)
-        setCurrentPage(newName)
+    const handlePageNameChange = (newName) => {
+        const pageData = pagesData.find((pageData) => pageData.selected)[0].pageName
     }
 
-    const pageButtons = () => {
+    const pageButtonsGroup = () => {
         return pagesData.map((el) => (
-                <ButtonToolbar>
-                    <Button
-                        key={el.pageId}
-                        onMouseDown={() => selectPage(el.pageId)}
-                        className={el.pageId === currentPage ? "btn-primary" : "btn-secondary"}
-                    >
-                        {el.pageName}
-                    </Button>
-                    <Button
-                        key={'delete' + el.pageId}
-                        onMouseDown={() => deletePage(pagesData, setAppVal, el.pageId, setCurrentPage)}
-                        className={el.pageId === currentPage ? "btn-primary" : "btn-secondary"}
-                    >
-                        Trash
-                    </Button>
-
-                    <Form.Control
-                        type="text"
-                        value={el.pageName}
-                        style={{cursor: 'pointer'}}
-                        onChange={(e) => handlePageNameChange(e.target.value, currentPage)}
-                    />
-                </ButtonToolbar>
+                pageButtons(pagesData, handleAppDataChange,
+                    handlePageNameChange, el, selectPage)
             )
         )
     }
@@ -117,11 +122,10 @@ function App() {
                 <Col lg={2}>
                     <Stack gap={3} className="sticky-top menu">
                         <AppToolbar
-                            handlePrint={() => handleHTMLChange(currentPage)}
                             handleExport={() => handleExport(plugins, pagesData)}
-                            handleAddPage={() => addPage(pagesData, setAppVal, initialValueBasicElements)}
+                            handleAddPage={() => addPage(pagesData, handleAppDataChange, initialValueBasicElements)}
                         />
-                        {pageButtons()}
+                        {pageButtonsGroup()}
                     </Stack>
                 </Col>
                 <Col lg>
@@ -130,16 +134,14 @@ function App() {
                         <div className="sticky-top bg-white">
                             <HeadingToolbarMarks/>
                         </div>
-                        <Plate id={"page" + currentPage} editableProps={editableProps}
-                               initialValue={pagesData[0].nodes}
+                        <Plate id={pagesData.filter(pageData => pageData.selected)[0].pageId} editableProps={editableProps}
+                               initialValue={pagesData.filter(pageData => pageData.selected)[0].nodes}
+                               value={pagesData.filter(pageData => pageData.selected)[0].nodes}
                                plugins={plugins}
                                components={components}
                                options={options}
                                onChange={(newV) => {
-                                   setAppVal({
-                                       ...pagesData,
-                                       [currentPage]: newV
-                                   })
+                                   handleAppDataChange("U", newV)
                                }}
                         >
 
