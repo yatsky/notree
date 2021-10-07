@@ -29,6 +29,7 @@ import {createListPlugin} from "@udecode/plate-list";
 import {createFontBackgroundColorPlugin, createFontColorPlugin, createFontSizePlugin} from "@udecode/plate-font";
 import {createFieldPlugin} from "./field/utils/createFieldPlugin";
 import {fieldModel} from "./field/model/fieldModel";
+import {createTrailingBlockPlugin} from "@udecode/plate-trailing-block";
 
 export const pluginsBasic = [
     // editor
@@ -70,6 +71,8 @@ export const pluginsBasic = [
 
     // FieldElement
     createFieldPlugin(),
+    // make sure there's trailing paragraph after a block except for paragraph itself.
+    createTrailingBlockPlugin({ type: ELEMENT_PARAGRAPH }),
 ];
 
 // Quick helper to create a block element with (marked) text
