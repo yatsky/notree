@@ -75,6 +75,9 @@ function App() {
                 {
                     "pageId": uuidv4(),
                     "pageName": "New page",
+                    "selected": false,
+                    "deleted": false,
+                    "nameReadOnly": true,
                     "nodes": initialValueBasicElements,
                 },
             ]
