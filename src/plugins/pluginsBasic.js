@@ -2,21 +2,21 @@ import * as React from 'react';
 import {createHistoryPlugin, createReactPlugin} from "@udecode/plate-core";
 import {createParagraphPlugin, ELEMENT_PARAGRAPH} from "@udecode/plate-paragraph";
 import {createBlockquotePlugin, ELEMENT_BLOCKQUOTE} from "@udecode/plate-block-quote";
-import {createCodeBlockPlugin, ELEMENT_CODE_BLOCK, ELEMENT_CODE_LINE} from "@udecode/plate-code-block";
-import {
-    createHeadingPlugin,
-    ELEMENT_H1,
-    ELEMENT_H2,
-    ELEMENT_H3,
-    ELEMENT_H4,
-    ELEMENT_H5,
-    ELEMENT_H6
-} from "@udecode/plate-heading";
+import {createCodeBlockPlugin} from "@udecode/plate-code-block";
+import {createHeadingPlugin, ELEMENT_H1, ELEMENT_H2} from "@udecode/plate-heading";
 import {
     createBoldPlugin,
     createCodePlugin,
-    createItalicPlugin, createStrikethroughPlugin, createSubscriptPlugin, createSuperscriptPlugin,
-    createUnderlinePlugin, MARK_BOLD, MARK_CODE, MARK_ITALIC, MARK_STRIKETHROUGH, MARK_UNDERLINE
+    createItalicPlugin,
+    createStrikethroughPlugin,
+    createSubscriptPlugin,
+    createSuperscriptPlugin,
+    createUnderlinePlugin,
+    MARK_BOLD,
+    MARK_CODE,
+    MARK_ITALIC,
+    MARK_STRIKETHROUGH,
+    MARK_UNDERLINE
 } from "@udecode/plate-basic-marks";
 import {FIELD} from "./field/defaults";
 import {createAlignPlugin} from "@udecode/plate-alignment";
