@@ -4,7 +4,7 @@ import React from "react";
 import {getPlatePluginType, useEventEditorId, useStoreEditorRef} from "@udecode/plate-core";
 import {MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE} from "@udecode/plate-basic-marks";
 import {FormatUnderlined} from '@styled-icons/material/FormatUnderlined';
-import {FontDownload, FormatBold, FormatColorText, FormatItalic, Print} from "@styled-icons/material";
+import {FontDownload, FormatBold, FormatColorText, FormatItalic, Print, Publish} from "@styled-icons/material";
 import {
     ToolbarButtonsAlign,
     ToolbarButtonsBasicElements,
@@ -20,6 +20,7 @@ import {insertField} from "../plugins/field/utils/insertField";
 import {PageAdd} from "@styled-icons/foundation";
 import {ArrowExportUp, Save} from "@styled-icons/fluentui-system-regular";
 import {saveAppDataLocal} from "../utils/appData";
+import Button from "react-bootstrap/Button";
 
 export const HeadingToolbarMarks = () => {
     return (
@@ -95,6 +96,14 @@ export const BallonToolbarMarks = () => {
 export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData}) => {
 
     return <HeadingToolbar>
+        <Button
+            onMouseDown={() => {}}
+            variant="outline-primary"
+            style={{marginBottom: "20px"}}
+        ><Publish size="10%"/>{" "}
+            Publish Experiment
+        </Button>
+        <br/>
         <ToolbarButton
             icon={<Print/>}
             onMouseDown={handlePrint}
@@ -111,5 +120,6 @@ export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData}) 
             icon={<Save/>}
             onMouseDown={() => saveAppDataLocal(appData)}
         />
+
     </HeadingToolbar>
 }
