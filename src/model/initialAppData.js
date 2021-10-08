@@ -14,7 +14,7 @@ export const initialAppData = {
         {
             pageId: "initial2",
             pageName: "Survey",
-            selected: true,
+            selected: false,
             nameReadOnly: true,
             deleted: false,
             nodes: initialValueBasicElements,
