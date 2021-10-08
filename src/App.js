@@ -17,6 +17,7 @@ import {initialAppData} from "./model/initialAppData";
 import {PageButtons} from "./toolbar/page/pageButton";
 import {v4 as uuidv4} from "uuid";
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
+import {reorder} from "./toolbar/page/utils";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -153,7 +154,25 @@ function App() {
             )
         )
     }
+    const onDragEnd = (result) => {
+        // dropped outside the list
+        if (!result.destination) {
+            return;
+        }
 
+        const items = reorder(
+            pagesData,
+            result.source.index,
+            result.destination.index
+        );
+
+        setAppData(
+            {
+                ...appData,
+                "pagesData": items
+            }
+        )
+    }
     return (
         <Container>
             <Row>
@@ -163,8 +182,7 @@ function App() {
                             handleExport={() => handleExport(plugins, pagesData)}
                             handleAddPage={() => addPage(pagesData, handleAppDataChange, initialValueBasicElements)}
                         />
-                        <DragDropContext onDragEnd={() => {
-                        }}>
+                        <DragDropContext onDragEnd={onDragEnd}>
                             <Droppable droppableId="buttons-background">
                                 {(provided) => (
                                     <div
