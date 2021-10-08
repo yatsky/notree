@@ -15,10 +15,11 @@ import {
     ToolbarKbd
 } from "./config";
 import {MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
-import {Image, Link} from "@styled-icons/boxicons-regular";
+import {Image, Link, LoaderAlt} from "@styled-icons/boxicons-regular";
 import {insertField} from "../plugins/field/utils/insertField";
 import {PageAdd} from "@styled-icons/foundation";
-import {ArrowExportUp} from "@styled-icons/fluentui-system-regular";
+import {ArrowExportUp, Save} from "@styled-icons/fluentui-system-regular";
+import {saveAppDataLocal} from "../utils/appData";
 
 export const HeadingToolbarMarks = () => {
     return (
@@ -91,7 +92,7 @@ export const BallonToolbarMarks = () => {
     );
 };
 
-export const AppToolbar = ({handlePrint, handleAddPage, handleExport}) => {
+export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData}) => {
 
     return <HeadingToolbar>
         <ToolbarButton
@@ -105,6 +106,10 @@ export const AppToolbar = ({handlePrint, handleAddPage, handleExport}) => {
         <ToolbarButton
             icon={<ArrowExportUp/>}
             onMouseDown={handleExport}
+        />
+        <ToolbarButton
+            icon={<Save/>}
+            onMouseDown={() => saveAppDataLocal(appData)}
         />
     </HeadingToolbar>
 }

@@ -18,6 +18,7 @@ import {PageButtons} from "./toolbar/page/pageButton";
 import {v4 as uuidv4} from "uuid";
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import {reorder} from "./toolbar/page/utils";
+import {loadAppDataLocal} from "./utils/appData";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -50,7 +51,7 @@ const plugins = [
 
 function App() {
     const [htmlVal, setHTMLVal] = useState(null);
-    const [appData, setAppData] = useState(initialAppData);
+    const [appData, setAppData] = useState(loadAppDataLocal('content'));
     const {pagesData} = appData
 
     const toggleNameReadOnly = (pageId, val) => {
@@ -181,6 +182,7 @@ function App() {
                         <AppToolbar
                             handleExport={() => handleExport(plugins, pagesData)}
                             handleAddPage={() => addPage(pagesData, handleAppDataChange, initialValueBasicElements)}
+                            appData={appData}
                         />
                         <DragDropContext onDragEnd={onDragEnd}>
                             <Droppable droppableId="buttons-background">
