@@ -1,11 +1,10 @@
 import {initialValueBasicElements} from "../plugins/pluginsBasic";
-import {v4 as uuidv4} from 'uuid';
 
 export const initialAppData = {
     otherInfo: "information",
     pagesData: [
         {
-            pageId: uuidv4(),
+            pageId: "initial1",
             pageName: "Introduction",
             selected: true,
             nameReadOnly: true,
@@ -13,8 +12,8 @@ export const initialAppData = {
             nodes: initialValueBasicElements,
         },
         {
-            pageId: uuidv4(),
-            pageName: "Introduction",
+            pageId: "initial2",
+            pageName: "Survey",
             selected: true,
             nameReadOnly: true,
             deleted: false,
