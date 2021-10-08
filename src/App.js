@@ -16,6 +16,7 @@ import {Col, Container, Row, Stack} from "react-bootstrap";
 import {initialAppData} from "./model/initialAppData";
 import {PageButtons} from "./toolbar/page/pageButton";
 import {v4 as uuidv4} from "uuid";
+import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();
@@ -56,7 +57,7 @@ function App() {
         newPagesData = pagesData.map(pageData => pageData.pageId === pageId ? {
             ...pageData,
             nameReadOnly: val
-        }: pageData)
+        } : pageData)
         setAppData(
             {
                 ...appData,
@@ -135,10 +136,20 @@ function App() {
         )
     }
 
-    const pageButtonsGroup = () => {
-        return pagesData.map((el) => (
-                !el.deleted ? PageButtons(handleAppDataChange,
-                    toggleNameReadOnly, handlePageNameChange, el, selectPage) : <></>
+    const pageButtonsGroup = (provided) => {
+        return pagesData.map((el, index) => (
+                !el.deleted ? (
+                    <Draggable key={el.pageId} draggableId={el.pageId} index={index}>
+                        {(provided) => <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                        >
+                            {PageButtons(handleAppDataChange,
+                                toggleNameReadOnly, handlePageNameChange, el, selectPage)}
+                        </div>}
+                    </Draggable>
+                ) : <></>
             )
         )
     }
@@ -152,7 +163,20 @@ function App() {
                             handleExport={() => handleExport(plugins, pagesData)}
                             handleAddPage={() => addPage(pagesData, handleAppDataChange, initialValueBasicElements)}
                         />
-                        {pageButtonsGroup()}
+                        <DragDropContext onDragEnd={() => {
+                        }}>
+                            <Droppable droppableId="buttons-background">
+                                {(provided) => (
+                                    <div
+                                        {...provided.droppableProps}
+                                        ref={provided.innerRef}
+                                    >
+                                        {pageButtonsGroup(provided)}
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
+                        </DragDropContext>
                     </Stack>
                 </Col>
                 <Col lg>
