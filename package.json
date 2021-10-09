@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@aws-amplify/datastore": "^3.4.8",
+    "@aws-amplify/ui-react": "^1.2.20",
     "@styled-icons/boxicons-regular": "^10.38.0",
     "@styled-icons/fluentui-system-regular": "^10.35.0",
     "@styled-icons/foundation": "^10.34.0",

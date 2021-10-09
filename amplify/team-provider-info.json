@@ -10,6 +10,11 @@
       "StackName": "amplify-notree-dev-93030",
       "StackId": "arn:aws:cloudformation:ap-southeast-2:025102549644:stack/amplify-notree-dev-93030/bfb30e60-288f-11ec-9f3a-06bdc60b3754",
       "AmplifyAppId": "d338372obfbhhk"
+    },
+    "categories": {
+      "auth": {
+        "notreea96c7aa5": {}
+      }
     }
   }
 }

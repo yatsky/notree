@@ -13,7 +13,6 @@ import {addPage} from "./toolbar/page/addPage";
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Col, Container, Row, Stack} from "react-bootstrap";
-import {initialAppData} from "./model/initialAppData";
 import {PageButtons} from "./toolbar/page/pageButton";
 import {v4 as uuidv4} from "uuid";
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
@@ -21,6 +20,8 @@ import {reorder} from "./toolbar/page/utils";
 import {loadAppDataLocal} from "./utils/appData";
 import Amplify from "aws-amplify";
 import awsconfig from './aws-exports'
+import {AmplifyAuthenticator, AmplifySignOut, AmplifySignUp} from "@aws-amplify/ui-react";
+import {onAuthUIStateChange} from "@aws-amplify/ui-components";
 
 Amplify.configure(awsconfig)
 
@@ -57,6 +58,17 @@ function App() {
     const [htmlVal, setHTMLVal] = useState(null);
     const [appData, setAppData] = useState(loadAppDataLocal('content'));
     const {pagesData} = appData
+
+    //authentication
+    const [authState, setAuthState] = useState()
+    const [user, setUser] = useState()
+
+    React.useEffect(() => {
+        return onAuthUIStateChange((nextAuthState, authData) => {
+            setAuthState(nextAuthState)
+            setUser(authData)
+        })
+    }, [])
 
     const toggleNameReadOnly = (pageId, val) => {
         let newPagesData
@@ -179,55 +191,67 @@ function App() {
         )
     }
     return (
-        <Container>
-            <Row>
-                <Col lg={2}>
-                    <Stack gap={3} className="sticky-top menu">
-                        <AppToolbar
-                            handleExport={() => handleExport(plugins, pagesData)}
-                            handleAddPage={() => addPage(pagesData, handleAppDataChange, initialValueBasicElements)}
-                            appData={appData}
-                        />
-                        <DragDropContext onDragEnd={onDragEnd}>
-                            <Droppable droppableId="buttons-background">
-                                {(provided) => (
-                                    <div
-                                        {...provided.droppableProps}
-                                        ref={provided.innerRef}
-                                    >
-                                        {pageButtonsGroup(provided)}
-                                        {provided.placeholder}
-                                    </div>
-                                )}
-                            </Droppable>
-                        </DragDropContext>
-                    </Stack>
-                </Col>
-                <Col lg>
-                    <div className="App">
-                        <BallonToolbarMarks/>
-                        <div className="sticky-top bg-white">
-                            <HeadingToolbarMarks/>
-                        </div>
-                        <Plate id={pagesData.filter(pageData => pageData.selected)[0].pageId}
-                               editableProps={editableProps}
-                               initialValue={pagesData.filter(pageData => pageData.selected)[0].nodes}
-                               value={pagesData.filter(pageData => pageData.selected)[0].nodes}
-                               plugins={plugins}
-                               components={components}
-                               options={options}
-                               onChange={(newV) => {
-                                   handleAppDataChange("U", newV)
-                               }}
-                        >
 
-                            {htmlVal}
-                            <br/>
-                        </Plate>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
+        /*https://github.com/aws-amplify/amplify-js/issues/1203#issuecomment-626062527*/
+        <AmplifyAuthenticator
+        >
+            <AmplifySignUp
+                slot="sign-up"
+                usernameAlias="email"
+                formFields={[{type: 'email'}, {type: 'password'}]}
+            />
+
+            <AmplifySignOut/>
+            <Container>
+                <Row>
+                    <Col lg={2}>
+                        <Stack gap={3} className="sticky-top menu">
+                            <AppToolbar
+                                handleExport={() => handleExport(plugins, pagesData)}
+                                handleAddPage={() => addPage(pagesData, handleAppDataChange, initialValueBasicElements)}
+                                appData={appData}
+                            />
+                            <DragDropContext onDragEnd={onDragEnd}>
+                                <Droppable droppableId="buttons-background">
+                                    {(provided) => (
+                                        <div
+                                            {...provided.droppableProps}
+                                            ref={provided.innerRef}
+                                        >
+                                            {pageButtonsGroup(provided)}
+                                            {provided.placeholder}
+                                        </div>
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
+                        </Stack>
+                    </Col>
+                    <Col lg>
+                        <div className="App">
+                            <BallonToolbarMarks/>
+                            <div className="sticky-top bg-white">
+                                <HeadingToolbarMarks/>
+                            </div>
+                            <Plate id={pagesData.filter(pageData => pageData.selected)[0].pageId}
+                                   editableProps={editableProps}
+                                   initialValue={pagesData.filter(pageData => pageData.selected)[0].nodes}
+                                   value={pagesData.filter(pageData => pageData.selected)[0].nodes}
+                                   plugins={plugins}
+                                   components={components}
+                                   options={options}
+                                   onChange={(newV) => {
+                                       handleAppDataChange("U", newV)
+                                   }}
+                            >
+
+                                {htmlVal}
+                                <br/>
+                            </Plate>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        </AmplifyAuthenticator>
     );
 }
 
