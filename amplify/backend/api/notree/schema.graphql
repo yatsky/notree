@@ -1,4 +1,4 @@
-type AppData @model {
+type AppData @auth(rules: [{ allow: owner, ownerField: "owner" }]) @model {
   id: ID!
   content: String!
 }

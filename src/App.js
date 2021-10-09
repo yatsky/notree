@@ -210,6 +210,7 @@ function App() {
                                 handleExport={() => handleExport(plugins, pagesData)}
                                 handleAddPage={() => addPage(pagesData, handleAppDataChange, initialValueBasicElements)}
                                 appData={appData}
+                                setAppData={setAppData}
                             />
                             <DragDropContext onDragEnd={onDragEnd}>
                                 <Droppable droppableId="buttons-background">

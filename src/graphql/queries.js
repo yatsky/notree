@@ -22,6 +22,7 @@ export const syncAppData = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt
@@ -38,6 +39,7 @@ export const getAppData = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -56,6 +58,7 @@ export const listAppDatas = /* GraphQL */ `
         _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
       startedAt

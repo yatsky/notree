@@ -4,7 +4,15 @@ import React from "react";
 import {getPlatePluginType, useEventEditorId, useStoreEditorRef} from "@udecode/plate-core";
 import {MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE} from "@udecode/plate-basic-marks";
 import {FormatUnderlined} from '@styled-icons/material/FormatUnderlined';
-import {FontDownload, FormatBold, FormatColorText, FormatItalic, Print, Publish} from "@styled-icons/material";
+import {
+    CloudDownload,
+    FontDownload,
+    FormatBold,
+    FormatColorText,
+    FormatItalic,
+    Print,
+    Publish
+} from "@styled-icons/material";
 import {
     ToolbarButtonsAlign,
     ToolbarButtonsBasicElements,
@@ -19,7 +27,7 @@ import {Image, Link, LoaderAlt} from "@styled-icons/boxicons-regular";
 import {insertField} from "../plugins/field/utils/insertField";
 import {PageAdd} from "@styled-icons/foundation";
 import {ArrowExportUp, CloudSync, Save} from "@styled-icons/fluentui-system-regular";
-import {saveAppDataCloud, saveAppDataLocal} from "../utils/appData";
+import {loadAppDataCloud, saveAppDataCloud, saveAppDataLocal} from "../utils/appData";
 import Button from "react-bootstrap/Button";
 
 export const HeadingToolbarMarks = () => {
@@ -93,7 +101,7 @@ export const BallonToolbarMarks = () => {
     );
 };
 
-export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData}) => {
+export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData, setAppData}) => {
 
     return <HeadingToolbar>
         <Button
@@ -123,6 +131,10 @@ export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData}) 
         <ToolbarButton
             icon={<CloudSync/>}
             onMouseDown={() => saveAppDataCloud(appData)}
+        />
+        <ToolbarButton
+            icon={<CloudDownload/>}
+            onMouseDown={() => loadAppDataCloud(setAppData)}
         />
 
     </HeadingToolbar>

@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateAppData = /* GraphQL */ `
-  subscription OnCreateAppData {
-    onCreateAppData {
+  subscription OnCreateAppData($owner: String!) {
+    onCreateAppData(owner: $owner) {
       id
       content
       _version
@@ -11,12 +11,13 @@ export const onCreateAppData = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateAppData = /* GraphQL */ `
-  subscription OnUpdateAppData {
-    onUpdateAppData {
+  subscription OnUpdateAppData($owner: String!) {
+    onUpdateAppData(owner: $owner) {
       id
       content
       _version
@@ -24,12 +25,13 @@ export const onUpdateAppData = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteAppData = /* GraphQL */ `
-  subscription OnDeleteAppData {
-    onDeleteAppData {
+  subscription OnDeleteAppData($owner: String!) {
+    onDeleteAppData(owner: $owner) {
       id
       content
       _version
@@ -37,6 +39,7 @@ export const onDeleteAppData = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;

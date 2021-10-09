@@ -17,12 +17,15 @@ export const saveAppDataLocal = async (appData) => {
     // setLoadingSave(false)
 }
 
-export const loadAppDataCloud = (key) => {
-    let content = localStorage.getItem(key)
-    if (content) {
-        return JSON.parse(content);
-    } else {
-        return initialAppData
+export const loadAppDataCloud = async (setAppData) => {
+    try {
+        const docs = await DataStore.query(AppData)
+        if (docs.length !== 0) {
+            const nodes = JSON.parse(docs[docs.length - 1].content)
+            setAppData(nodes)
+        }
+    } catch (error) {
+        console.log('Error retrieving posts', error)
     }
 }
 
