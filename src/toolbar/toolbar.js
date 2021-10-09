@@ -18,8 +18,8 @@ import {MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import {Image, Link, LoaderAlt} from "@styled-icons/boxicons-regular";
 import {insertField} from "../plugins/field/utils/insertField";
 import {PageAdd} from "@styled-icons/foundation";
-import {ArrowExportUp, Save} from "@styled-icons/fluentui-system-regular";
-import {saveAppDataLocal} from "../utils/appData";
+import {ArrowExportUp, CloudSync, Save} from "@styled-icons/fluentui-system-regular";
+import {saveAppDataCloud, saveAppDataLocal} from "../utils/appData";
 import Button from "react-bootstrap/Button";
 
 export const HeadingToolbarMarks = () => {
@@ -119,6 +119,10 @@ export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData}) 
         <ToolbarButton
             icon={<Save/>}
             onMouseDown={() => saveAppDataLocal(appData)}
+        />
+        <ToolbarButton
+            icon={<CloudSync/>}
+            onMouseDown={() => saveAppDataCloud(appData)}
         />
 
     </HeadingToolbar>

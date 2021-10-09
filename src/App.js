@@ -19,6 +19,10 @@ import {v4 as uuidv4} from "uuid";
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import {reorder} from "./toolbar/page/utils";
 import {loadAppDataLocal} from "./utils/appData";
+import Amplify from "aws-amplify";
+import awsconfig from './aws-exports'
+
+Amplify.configure(awsconfig)
 
 const baseComponents = createPlateComponents();
 const options = createPlateOptions();

@@ -1,0 +1,5 @@
+type AppData @model {
+  id: ID!
+  content: String!
+}
+
