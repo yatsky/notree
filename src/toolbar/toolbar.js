@@ -5,7 +5,7 @@ import {getPlatePluginType, useEventEditorId, useStoreEditorRef} from "@udecode/
 import {MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE} from "@udecode/plate-basic-marks";
 import {FormatUnderlined} from '@styled-icons/material/FormatUnderlined';
 import {
-    CloudDownload,
+    CloudDownload, CloudUpload,
     FontDownload,
     FormatBold,
     FormatColorText,
@@ -101,7 +101,7 @@ export const BallonToolbarMarks = () => {
     );
 };
 
-export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData, setAppData}) => {
+export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData, setApps}) => {
 
     return <HeadingToolbar>
         <Button
@@ -129,12 +129,12 @@ export const AppToolbar = ({handlePrint, handleAddPage, handleExport, appData, s
             onMouseDown={() => saveAppDataLocal(appData)}
         />
         <ToolbarButton
-            icon={<CloudSync/>}
+            icon={<CloudUpload/>}
             onMouseDown={() => saveAppDataCloud(appData)}
         />
         <ToolbarButton
             icon={<CloudDownload/>}
-            onMouseDown={() => loadAppDataCloud(setAppData)}
+            onMouseDown={() => loadAppDataCloud(setApps)}
         />
 
     </HeadingToolbar>

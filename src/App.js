@@ -22,6 +22,7 @@ import Amplify from "aws-amplify";
 import awsconfig from './aws-exports'
 import {AmplifyAuthenticator, AmplifySignOut, AmplifySignUp} from "@aws-amplify/ui-react";
 import {onAuthUIStateChange} from "@aws-amplify/ui-components";
+import Button from "react-bootstrap/Button";
 
 Amplify.configure(awsconfig)
 
@@ -56,6 +57,8 @@ const plugins = [
 
 function App() {
     const [htmlVal, setHTMLVal] = useState(null);
+    // all the apps that this user owns
+    const [apps, setApps] = useState({});
     const [appData, setAppData] = useState(loadAppDataLocal('content'));
     const {pagesData} = appData
 
@@ -190,6 +193,15 @@ function App() {
             }
         )
     }
+
+    const genApps = () => {
+        return Object.entries(apps).map(([k, v]) => (
+            <Button key={k} variant={v.selected ? "primary" : "secondary"}>
+                {v.appName ? v.appName : "Untitled app"}
+            </Button>
+        ))
+    }
+
     return (
 
         /*https://github.com/aws-amplify/amplify-js/issues/1203#issuecomment-626062527*/
@@ -204,6 +216,12 @@ function App() {
             <AmplifySignOut/>
             <Container>
                 <Row>
+                    <Col>
+                        <p>Apps</p>
+                        {genApps()}
+                    </Col>
+                </Row>
+                <Row>
                     <Col lg={2}>
                         <Stack gap={3} className="sticky-top menu">
                             <AppToolbar
@@ -211,6 +229,7 @@ function App() {
                                 handleAddPage={() => addPage(pagesData, handleAppDataChange, initialValueBasicElements)}
                                 appData={appData}
                                 setAppData={setAppData}
+                                setApps={setApps}
                             />
                             <DragDropContext onDragEnd={onDragEnd}>
                                 <Droppable droppableId="buttons-background">

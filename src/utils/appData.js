@@ -17,12 +17,17 @@ export const saveAppDataLocal = async (appData) => {
     // setLoadingSave(false)
 }
 
-export const loadAppDataCloud = async (setAppData) => {
+export const loadAppDataCloud = async (setApps) => {
     try {
         const docs = await DataStore.query(AppData)
         if (docs.length !== 0) {
-            const nodes = JSON.parse(docs[docs.length - 1].content)
-            setAppData(nodes)
+            let tempApps = {}
+            docs.forEach((doc) => {
+                tempApps[doc.id] = JSON.parse(doc.content)
+                }
+            )
+            setApps(tempApps)
+            console.log(tempApps)
         }
     } catch (error) {
         console.log('Error retrieving posts', error)

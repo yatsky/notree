@@ -2,6 +2,7 @@ import {initialValueBasicElements} from "../plugins/pluginsBasic";
 
 export const initialAppData = {
     otherInfo: "information",
+    appName: "Survey",
     pagesData: [
         {
             pageId: "initial1",
