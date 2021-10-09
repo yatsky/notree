@@ -16,5 +16,23 @@
         "notreea96c7aa5": {}
       }
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-notree-prod-84023-authRole",
+      "UnauthRoleArn": "arn:aws:iam::025102549644:role/amplify-notree-prod-84023-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::025102549644:role/amplify-notree-prod-84023-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-notree-prod-84023-deployment",
+      "UnauthRoleName": "amplify-notree-prod-84023-unauthRole",
+      "StackName": "amplify-notree-prod-84023",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:025102549644:stack/amplify-notree-prod-84023/e4ba09d0-2951-11ec-b9c7-0a7df2f34b82",
+      "AmplifyAppId": "d338372obfbhhk"
+    },
+    "categories": {
+      "auth": {
+        "notreea96c7aa5": {}
+      }
+    }
   }
 }
