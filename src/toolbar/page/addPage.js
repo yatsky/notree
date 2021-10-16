@@ -1,3 +1,3 @@
 export const addPage = (appVal, handleAppDataChange) => {
-    handleAppDataChange("C", null, null)
-}
+  handleAppDataChange("C", null, null);
+};
