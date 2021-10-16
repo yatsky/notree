@@ -1,0 +1,15 @@
+* What is [[www.notree.io][NoTree]]?
+NoTree is SaaS tool for all your needs when it comes to designing, creating, and deploying an online experiment.
+
+It is mainly made of two parts:
+- A frontend WYSIWYG tool that helps you design the experiment - both its content, style and logic
+- A backend that tests, builds, and deploys your experiment.
+  - At this stage, the backend interprets your design to an oTree project. Therefore you're still bound by its license.
+* Who am I?
+:LOGBOOK:
+CLOCK: [2021-10-16 Sat 13:17]--[2021-10-16 Sat 13:20] =>  0:03
+:END:
+I'm a developer who started developing expriments in oTree in 2018.
+
+While my full-time job is a data engineer, I enjoy creating tools like NoTree for fun and helping other people.
+
