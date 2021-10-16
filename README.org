@@ -2,9 +2,10 @@
 NoTree is SaaS tool for all your needs when it comes to designing, creating, and deploying an online experiment.
 
 It is mainly made of two parts:
-- A frontend WYSIWYG tool that helps you design the experiment - both its content, style and logic
+- A frontend WYSIWYG tool that helps you design the experiment - both its content, style and logic.
+  - The frontend is built on [[https://github.com/ianstormtaylor/slate][Slate]] and [[https://github.com/udecode/plate][Plate]].
 - A backend that tests, builds, and deploys your experiment.
-  - At this stage, the backend interprets your design to an oTree project. Therefore you're still bound by its license.
+  - At this stage, the backend interprets your design to an [[https://otree.readthedocs.io/en/self/][oTree]] project. Therefore you're still bound by its license.
 * Who am I?
 :LOGBOOK:
 CLOCK: [2021-10-16 Sat 13:17]--[2021-10-16 Sat 13:20] =>  0:03
