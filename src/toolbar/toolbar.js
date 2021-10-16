@@ -121,7 +121,6 @@ export const BallonToolbarMarks = () => {
 };
 
 export const AppToolbar = ({
-  handlePrint,
   handleAddPage,
   handleExport,
   appData,
@@ -137,7 +136,6 @@ export const AppToolbar = ({
         <Publish size="10%" /> Publish Experiment
       </Button>
       <br />
-      <ToolbarButton icon={<Print />} onMouseDown={handlePrint} />
       <ToolbarButton icon={<PageAdd />} onMouseDown={handleAddPage} />
       <ToolbarButton icon={<ArrowExportUp />} onMouseDown={handleExport} />
       <ToolbarButton
