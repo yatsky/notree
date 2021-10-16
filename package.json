@@ -5,6 +5,9 @@
   "dependencies": {
     "@aws-amplify/datastore": "^3.4.8",
     "@aws-amplify/ui-react": "^1.2.20",
+    "@babel/cli": "^7.15.7",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
     "@styled-icons/boxicons-regular": "^10.38.0",
     "@styled-icons/fluentui-system-regular": "^10.35.0",
     "@styled-icons/foundation": "^10.34.0",
@@ -36,7 +39,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "deploy": "aws s3 sync build/ s3://notree-build --acl public-read",
     "eject": "react-scripts eject"
   },
@@ -57,5 +60,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-test-renderer": "^17.0.2"
   }
 }
