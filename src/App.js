@@ -121,9 +121,9 @@ function App() {
       ];
     } else if (op === "D") {
       newPagesData = pagesData.map((pageData) => {
-        return { ...pageData, deleted: pageData.pageId === pageId };
+        return { ...pageData, deleted: pageData.pageId === pageId ? true : pageData.deleted };
       });
-      newPagesData[0].selected = true;
+      // newPagesData[0].selected = true;
     }
     setAppData({
       ...appData,
