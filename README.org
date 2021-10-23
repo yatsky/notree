@@ -1,4 +1,4 @@
-* What is [[www.notree.io][NoTree]]?
+* What is [[https://www.notree.io][NoTree]]?
 NoTree is SaaS tool for all your needs when it comes to designing, creating, and deploying an online experiment.
 
 It is mainly made of two parts:
