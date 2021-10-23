@@ -6,6 +6,43 @@ It is mainly made of two parts:
   - The frontend is built on [[https://github.com/ianstormtaylor/slate][Slate]] and [[https://github.com/udecode/plate][Plate]].
 - A backend that tests, builds, and deploys your experiment.
   - At this stage, the backend interprets your design to an [[https://otree.readthedocs.io/en/self/][oTree]] project. Therefore you're still bound by its license.
+* Roadmap
+:LOGBOOK:
+CLOCK: [2021-10-23 Sat 22:30]--[2021-10-23 Sat 22:50] =>  0:20
+:END:
+:railroad_track:
+The ultimate goal of this project is for you to design the experiment in NoTree and have it test and deploy the experiment for you.
+
+As a starting point I intend to get the following core functionalities so that it can act solely as an oTree designer:
+- [X] Design a page through the WYSIWYG editor
+- [X] Insert NoTree fields into a page
+- [X] User registration
+  - [X] Implemented via AWS Cognito
+- [-] Save/Read user data to DynamoDB
+  - [X] Page level
+  - [X] App level
+  - [ ] Project level
+- [-] Export pages
+  - [-] Export pages under a generic name
+    - [-] oTree-compatible Django templates
+      - [ ] oTree boilerplate code
+      - [X] correct HTML and fields
+  - [ ] Support customized page names
+  - [ ] Provide a single zip file for exported pages
+- [ ] Preview mode that allows anonymous users to access the app without registration and use it offline
+- [ ] NoTree Field
+  - [ ] Preview
+    - [ ] preview for each widget type
+    - [ ] preview of sensible validations
+  - [ ] Validation
+  - [ ] Choices
+    - [ ] Support custom choices list
+- [ ] App and multiple pages in a single app
+- [ ] Project and multiple apps in a single project
+- [ ] Multiple projects under a user account
+* Questions and improvements?
+You are welcome to open issues if you have a question or want to have a feature added, and I'll try my best to address these.
+However my focus will be finishing the functionalities listed in the [[Roadmap]].
 * Who am I?
 :LOGBOOK:
 CLOCK: [2021-10-16 Sat 13:17]--[2021-10-16 Sat 13:20] =>  0:03
@@ -13,4 +50,3 @@ CLOCK: [2021-10-16 Sat 13:17]--[2021-10-16 Sat 13:20] =>  0:03
 I'm a developer who started developing expriments in oTree in 2018.
 
 While my full-time job is a data engineer, I enjoy creating tools like NoTree for fun and helping other people.
-
