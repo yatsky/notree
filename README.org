@@ -27,7 +27,7 @@ As a starting point I intend to get the following core functionalities so that i
     - [-] oTree-compatible Django templates
       - [ ] oTree boilerplate code
       - [X] correct HTML and fields
-  - [ ] Support customized page names
+  - [X] Support customized page names
   - [ ] Provide a single zip file for exported pages
 - [ ] Preview mode that allows anonymous users to access the app without registration and use it offline
 - [ ] NoTree Field
