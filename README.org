@@ -6,11 +6,11 @@ It is mainly made of two parts:
   - The frontend is built on [[https://github.com/ianstormtaylor/slate][Slate]] and [[https://github.com/udecode/plate][Plate]].
 - A backend that tests, builds, and deploys your experiment.
   - At this stage, the backend interprets your design to an [[https://otree.readthedocs.io/en/self/][oTree]] project. Therefore you're still bound by its license.
-* Roadmap
+* Roadmap 🗺
 :LOGBOOK:
 CLOCK: [2021-10-23 Sat 22:30]--[2021-10-23 Sat 22:50] =>  0:20
 :END:
-:railroad_track:
+
 The ultimate goal of this project is for you to design the experiment in NoTree and have it test and deploy the experiment for you.
 
 As a starting point I intend to get the following core functionalities so that it can act solely as an oTree designer:
