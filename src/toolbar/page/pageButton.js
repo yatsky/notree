@@ -15,7 +15,10 @@ export const PageButtons = (
     <ButtonToolbar>
       <Form.Control
         type="text"
-        className={pageData.selected ? "bg-primary text-white" : ""}
+        className={`
+            ${!pageData.nameReadOnly ? "outline-primary" : ""}
+            ${pageData.selected && pageData.nameReadOnly ? "bg-primary text-white" : ""}
+        `}
         value={pageData.pageName}
         style={{ cursor: "pointer" }}
         onClick={() => selectPage(pageData.pageId)}
