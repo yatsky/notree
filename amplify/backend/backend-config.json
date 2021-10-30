@@ -11,7 +11,11 @@
               "userPoolId": "authnotreea96c7aa5"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
         }
       }
     }

@@ -2,7 +2,7 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateAppData = /* GraphQL */ `
-  subscription OnCreateAppData($owner: String!) {
+  subscription OnCreateAppData($owner: String) {
     onCreateAppData(owner: $owner) {
       id
       content
@@ -16,7 +16,7 @@ export const onCreateAppData = /* GraphQL */ `
   }
 `;
 export const onUpdateAppData = /* GraphQL */ `
-  subscription OnUpdateAppData($owner: String!) {
+  subscription OnUpdateAppData($owner: String) {
     onUpdateAppData(owner: $owner) {
       id
       content
@@ -30,7 +30,7 @@ export const onUpdateAppData = /* GraphQL */ `
   }
 `;
 export const onDeleteAppData = /* GraphQL */ `
-  subscription OnDeleteAppData($owner: String!) {
+  subscription OnDeleteAppData($owner: String) {
     onDeleteAppData(owner: $owner) {
       id
       content

@@ -17,13 +17,6 @@ export const schema = {
           isRequired: true,
           attributes: [],
         },
-        owner: {
-          name: "owner",
-          isArray: false,
-          type: "String",
-          isRequired: false,
-          attributes: [],
-        },
       },
       syncable: true,
       pluralName: "AppData",
@@ -51,5 +44,5 @@ export const schema = {
   },
   enums: {},
   nonModels: {},
-  version: "6521741f11d2b7ab327f507239c71e3f",
+  version: "6e44e2ee54b85d8081ab7542d121df82",
 };

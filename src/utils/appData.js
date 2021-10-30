@@ -19,11 +19,12 @@ export const saveAppDataLocal = async (appData) => {
 
 export const loadAppDataCloud = async (setApps) => {
   try {
-    const docs = await DataStore.query(AppData);
-    if (docs.length !== 0) {
+    const apps = await DataStore.query(AppData);
+    if (apps.length !== 0) {
       let tempApps = {};
-      docs.forEach((doc) => {
-        tempApps[doc.id] = JSON.parse(doc.content);
+      apps.forEach((app) => {
+        console.log(app);
+        tempApps[app.id] = JSON.parse(app.content);
       });
       setApps(tempApps);
       console.log(tempApps);
@@ -35,12 +36,14 @@ export const loadAppDataCloud = async (setApps) => {
 
 export const saveAppDataCloud = async (appData) => {
   // setLoadingSave(true)
-  let text = JSON.stringify(appData);
   try {
     console.log("trying to save");
+    // const original = await DataStore.query(AppData, AppData.id)
+    // console.log("Original object: ", original);
     await DataStore.save(
       new AppData({
-        content: text,
+        id: "test",
+        content: JSON.stringify(appData),
       })
     );
   } catch (error) {

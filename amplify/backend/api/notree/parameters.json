@@ -1,11 +1,8 @@
 {
-    "AppSyncApiName": "notree",
-    "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": false,
-    "AuthCognitoUserPoolId": {
-        "Fn::GetAtt": [
-            "authnotreea96c7aa5",
-            "Outputs.UserPoolId"
-        ]
-    }
+  "AppSyncApiName": "notree",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": ["authnotreea96c7aa5", "Outputs.UserPoolId"]
+  }
 }
