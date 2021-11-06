@@ -39,6 +39,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { onAuthUIStateChange } from "@aws-amplify/ui-components";
 import Button from "react-bootstrap/Button";
+import { useEventEditorId, useStoreEditorRef } from "@udecode/plate-core";
 
 Amplify.configure(awsconfig);
 
@@ -77,6 +78,8 @@ function App() {
   //authentication
   const [authState, setAuthState] = useState();
   const [user, setUser] = useState();
+
+  const editor = useStoreEditorRef(useEventEditorId("focus"));
 
   React.useEffect(() => {
     return onAuthUIStateChange((nextAuthState, authData) => {
@@ -121,7 +124,10 @@ function App() {
       ];
     } else if (op === "D") {
       newPagesData = pagesData.map((pageData) => {
-        return { ...pageData, deleted: pageData.pageId === pageId ? true : pageData.deleted };
+        return {
+          ...pageData,
+          deleted: pageData.pageId === pageId ? true : pageData.deleted,
+        };
       });
       // newPagesData[0].selected = true;
     }
@@ -241,7 +247,7 @@ function App() {
           <Col lg={2}>
             <Stack gap={3} className="sticky-top menu">
               <AppToolbar
-                handleExport={() => handleExport(plugins, pagesData)}
+                handleExport={() => handleExport(editor, plugins, pagesData)}
                 handleAddPage={() =>
                   addPage(
                     pagesData,

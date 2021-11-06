@@ -16,6 +16,7 @@ import Row from "react-bootstrap/Row";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../fieldElement.css";
 import Col from "react-bootstrap/Col";
+import { Choices } from "./choices";
 
 export const FieldElement = (props) => {
   // https://docs.slatejs.org/concepts/09-rendering
@@ -61,6 +62,11 @@ export const FieldElement = (props) => {
     const path = ReactEditor.findPath(editor, element);
     setNodes(editor, { label: val }, { at: path });
   };
+  const onChoicesChange = (e) => {
+    let val = e.target.value;
+    const path = ReactEditor.findPath(editor, element);
+    setNodes(editor, { choices: val }, { at: path });
+  };
   const onDocChange = (e) => {
     let val = e.target.value;
     const path = ReactEditor.findPath(editor, element);
@@ -86,9 +92,16 @@ export const FieldElement = (props) => {
               <Name name={element.name} onNameChange={onNameChange} />
               <Label label={element.label} onLabelChange={onLabelChange} />
               <Model onModelChange={onModelChange} />
-              <FieldType onFieldTypeChange={onFieldTypeChange} />
+              <FieldType
+                fieldType={element.fieldType}
+                onFieldTypeChange={onFieldTypeChange}
+              />
             </Col>
             <Col>
+              <Choices
+                choices={element.choices}
+                onChoicesChange={onChoicesChange}
+              />
               <CanBeBlank onCanBeBlankChange={onCanBeBlankChange} />
               <Widget onWidgetChange={onWidgetChange} />
               <Doc onDocChange={onDocChange} />

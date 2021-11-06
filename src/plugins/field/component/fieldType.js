@@ -2,7 +2,7 @@ import React from "react";
 import { FieldTypeOptions } from "../model/fieldModel";
 import Form from "react-bootstrap/Form";
 
-export const FieldType = ({ onFieldTypeChange }) => {
+export const FieldType = ({ fieldType, onFieldTypeChange }) => {
   const opts = FieldTypeOptions.map((opt, idx) => {
     return (
       <option key={idx} value={opt}>
@@ -13,7 +13,7 @@ export const FieldType = ({ onFieldTypeChange }) => {
   return (
     <Form.Group controlId="field-type">
       <Form.Label>Field type</Form.Label>
-      <Form.Control as="select" onChange={onFieldTypeChange}>
+      <Form.Control as="select" value={fieldType} onChange={onFieldTypeChange}>
         {opts}
       </Form.Control>
     </Form.Group>
