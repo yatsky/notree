@@ -52,17 +52,33 @@ export const handleExport = async (editor, plugins, pagesData) => {
             const { name, fieldType, widget, label, choices, doc } = node;
             let regex = /\n/gm;
             let subst = `,`;
-            let validChoices = choices
-              .split(regex)
-              .map((el) => `"${el}"`)
-              .join();
+
+            let choicesStub = "";
+            if (choices.split(regex).length > 1) {
+              let validChoices = choices
+                .split(regex)
+                .map((el) => `"${el}"`)
+                .join();
+              choicesStub = `choices=(${validChoices}),`;
+            }
+
             const fieldTypes = {
               int: "Integer",
               float: "Float",
               string: "String",
             };
+            const fieldWidgets = {
+              "radio-select": "RadioSelect",
+              "radio-select-horizontal": "RadioSelectHorizontal",
+              none: "None",
+            };
             let validFieldType = fieldTypes[fieldType];
-            result = `${name} = models.${validFieldType}Field(label="${label}", doc="${doc}", choices=(${validChoices}))`;
+            let widgetStub = "";
+            if (widget && widget !== "none") {
+              let validWidget = fieldWidgets[widget];
+              widgetStub = `widget=widgets.${validWidget}`;
+            }
+            result = `${name} = models.${validFieldType}Field(label="${label}", doc="${doc}", ${choicesStub} ${widgetStub})`;
             return result;
           }),
       });
@@ -75,6 +91,7 @@ export const handleExport = async (editor, plugins, pagesData) => {
       modelsData = modelsData + field + "\n";
     }
   }
-  let blob = new Blob([modelsData], { type: "text/html;charset=utf-8" });
-  await FileSaver.saveAs(blob, "models.py");
+  let models = new Blob([modelsData], { type: "text;charset=utf-8" });
+  await FileSaver.saveAs(models, "models.py");
+  console.log(modelsData);
 };

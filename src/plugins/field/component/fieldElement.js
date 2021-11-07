@@ -103,7 +103,7 @@ export const FieldElement = (props) => {
                 onChoicesChange={onChoicesChange}
               />
               <CanBeBlank onCanBeBlankChange={onCanBeBlankChange} />
-              <Widget onWidgetChange={onWidgetChange} />
+              <Widget widget={element.widget} onWidgetChange={onWidgetChange} />
               <Doc onDocChange={onDocChange} />
             </Col>
           </Row>
