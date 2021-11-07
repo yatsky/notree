@@ -20,7 +20,7 @@ export const handleExport = async (editor, plugins, pagesData) => {
           serializeHTMLFromNodes(createEditorPlugins(plugins), {
             plugins: plugins,
             nodes: pageData.nodes,
-            preserveClassNames: ["slate-", "notree-"],
+            preserveClassNames: ["slate-", "notree-", "d-"],
           })
         ),
       });

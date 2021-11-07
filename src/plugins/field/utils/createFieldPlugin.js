@@ -26,7 +26,7 @@ export const createFieldPlugin = (options) => ({
       const { label, name, model } = props.element;
       return (
         <div className={"notree-" + props.element.model}>
-          <p>{label}</p>
+          <p className={"d-none"}>{label}</p>
           {/* if I use % here it will cause the html output to be escaped */}
           {`{{ formfield ${model}.${name} }}`}
         </div>
