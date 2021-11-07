@@ -1,4 +1,16 @@
+type PageData @model {
+      pageId: String!
+      pageName: String!
+      selected: Boolean!
+      nameReadOnly: Boolean!
+      deleted: Boolean!
+      nodes: String!
+}
+
 type AppData @auth(rules: [{ allow: owner, ownerField: "owner" }]) @model {
   id: ID!
   content: String!
+  appName: String!
+  pagesData: [PageData]!
+  otherInfo: String
 }

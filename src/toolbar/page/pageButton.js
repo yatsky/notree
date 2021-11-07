@@ -34,11 +34,10 @@ export const PageButtons = (
         }}
         readOnly={pageData.nameReadOnly}
       />
-
       <Button
         key={"delete" + pageData.pageId}
         onClick={() => deletePage(handleAppDataChange, pageData.pageId)}
-        className={pageData.selected ? "btn-primary" : "btn-secondary"}
+        className={pageData.selected ? "btn-primary mt-1" : "btn-secondary mt-1"}
       >
         Trash
       </Button>
