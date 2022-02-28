@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-28T11:25:34.175Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.62" etag="6RTDavxWeNY0ucdA3diK" version="16.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-28T11:25:41.383Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.62" etag="EyXoYqUSzIsuow8cbDdo" version="16.5.3" type="github">
   <diagram id="e83RAm4Oi2vzWQJs5l6y" name="Page-1">
     <mxGraphModel dx="1203" dy="1163" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -26,7 +26,7 @@
           <mxGeometry x="250" y="230" width="540" height="530" as="geometry" />
         </mxCell>
         <mxCell id="A0Xji-Ykmxe-YuhmNoQn-15" value="Data Store" style="whiteSpace=wrap;html=1;aspect=fixed;dashed=1;strokeColor=#000000;verticalAlign=top;" vertex="1" parent="A0Xji-Ykmxe-YuhmNoQn-6">
-          <mxGeometry x="392.35" y="124.10000000000001" width="135.3" height="135.3" as="geometry" />
+          <mxGeometry x="392.35" y="130" width="135.3" height="135.3" as="geometry" />
         </mxCell>
         <mxCell id="A0Xji-Ykmxe-YuhmNoQn-8" value="AWS&lt;br&gt;Amplify" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/ionicons-fill-vol-1/512/logo-amplify-128.png;dashed=1;imageBorder=default;" vertex="1" parent="A0Xji-Ykmxe-YuhmNoQn-6">
           <mxGeometry x="50" y="169.4" width="90" height="90" as="geometry" />
