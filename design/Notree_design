@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-28T12:03:51.854Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.62" etag="4Lbr-DPrGq4Sfhcpmxlg" version="16.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-28T12:04:11.413Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.62" etag="PSON18rcE3pFxhwm8nKM" version="16.5.3" type="github">
   <diagram id="e83RAm4Oi2vzWQJs5l6y" name="Page-1">
     <mxGraphModel dx="2899" dy="1163" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -187,7 +187,7 @@
         <mxCell id="A0Xji-Ykmxe-YuhmNoQn-79" value="" style="group" vertex="1" connectable="0" parent="A0Xji-Ykmxe-YuhmNoQn-6">
           <mxGeometry x="475" y="460" width="135.30000000000007" height="135.3" as="geometry" />
         </mxCell>
-        <mxCell id="A0Xji-Ykmxe-YuhmNoQn-80" value="Code initialisation" style="whiteSpace=wrap;html=1;aspect=fixed;dashed=1;strokeColor=#000000;verticalAlign=top;" vertex="1" parent="A0Xji-Ykmxe-YuhmNoQn-79">
+        <mxCell id="A0Xji-Ykmxe-YuhmNoQn-80" value="Project initialisation" style="whiteSpace=wrap;html=1;aspect=fixed;dashed=1;strokeColor=#000000;verticalAlign=top;" vertex="1" parent="A0Xji-Ykmxe-YuhmNoQn-79">
           <mxGeometry width="135.3" height="135.3" as="geometry" />
         </mxCell>
         <mxCell id="A0Xji-Ykmxe-YuhmNoQn-81" value="AWS Lambda" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.lambda;" vertex="1" parent="A0Xji-Ykmxe-YuhmNoQn-79">
