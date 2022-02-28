@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-02-28T12:30:57.348Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.62" etag="VV_Q0Z0_YWixojeCV3G0" version="16.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-02-28T12:31:13.652Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.62" etag="YgWcjLUdT6oKLCK_cKpL" version="16.5.3" type="github">
   <diagram id="e83RAm4Oi2vzWQJs5l6y" name="Page-1">
     <mxGraphModel dx="2230" dy="895" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -213,7 +213,7 @@
           <mxGeometry width="135.3" height="135.3" as="geometry" />
         </mxCell>
         <mxCell id="A0Xji-Ykmxe-YuhmNoQn-8" value="AWS&lt;br&gt;Amplify" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn1.iconfinder.com/data/icons/ionicons-fill-vol-1/512/logo-amplify-128.png;dashed=1;imageBorder=none;" vertex="1" parent="A0Xji-Ykmxe-YuhmNoQn-18">
-          <mxGeometry x="22.650000000000006" y="10.000000000000034" width="90" height="90" as="geometry" />
+          <mxGeometry x="22.650000000000006" y="6.200000000000034" width="90" height="90" as="geometry" />
         </mxCell>
         <mxCell id="A0Xji-Ykmxe-YuhmNoQn-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="A0Xji-Ykmxe-YuhmNoQn-6" source="A0Xji-Ykmxe-YuhmNoQn-19" target="A0Xji-Ykmxe-YuhmNoQn-15">
           <mxGeometry relative="1" as="geometry" />
