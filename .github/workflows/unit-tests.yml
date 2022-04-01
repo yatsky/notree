@@ -25,6 +25,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      # 4: run test command
+      # 4: will need to run amplify pull to generate aws-exports.js so App.test.js will work
+
+      # 5: run test command
       - name: Run test command
         run: yarn test
